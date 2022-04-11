@@ -1,11 +1,14 @@
-// All arguments
+// Pipeline arguments
 params.methods = ["MAST", "mixscape"]
+params.result_file_name = "undercover_gRNA_check_results.rds"
 
 // define a channel for the methods
 methods_ch = Channel.from(params.methods)
 
-// Get a simple channel with the dataset names
-process obtain_dataset_names {
+/************************************************
+PROCESS 1: Obain tuples of datastes and NTC pairs
+*************************************************/
+process obtain_dataset_ntc_tuples {
 
 output:
 stdout dataset_names_raw
@@ -35,8 +38,12 @@ cat(paste0(out, collapse = "\n"));
 dataset_ntc_pairs = dataset_names_raw.splitText().map{it.trim()}
 dataset_ntc_method_tuples = dataset_ntc_pairs.combine(methods_ch)
 
-process print_ex {
-  echo true
+/******************************************
+PROCESS 2: Run methods on undercover gRNAs
+******************************************/
+process run_method {
+  output:
+  file 'raw_result.rds' into raw_results_ch
 
   input:
   path data_file from params.data_file
@@ -44,5 +51,23 @@ process print_ex {
 
   """
   run_method.R $data_file $dataset_ntc $method
+  """
+}
+
+
+/*************************
+PROCESS 3: Combine results
+**************************/
+process combine_results {
+  publishDir params.result_dir, mode: "copy"
+
+  output:
+  file "$params.result_file_name" into collected_results_ch
+
+  input:
+  file 'raw_result' from raw_results_ch.collect()
+
+  """
+  collect_results.R $params.result_file_name raw_result*
   """
 }

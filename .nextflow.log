@@ -1,286 +1,38 @@
-Apr-11 22:00:58.896 [main] DEBUG nextflow.cli.Launcher - $> nextflow main.nf --data_file /Users/timbarry/research_code/undercover-gRNA-pipeline/data_file.R --result_dir /Users/timbarry/research_code/undercover-gRNA-pipeline
-Apr-11 22:00:59.039 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.04.3
-Apr-11 22:00:59.067 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [gigantic_bohr] - revision: 0c55704bf9
-Apr-11 22:00:59.080 [main] DEBUG nextflow.config.ConfigBuilder - Found config home: /Users/timbarry/.nextflow/config
-Apr-11 22:00:59.082 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/timbarry/.nextflow/config
-Apr-11 22:00:59.107 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
-Apr-11 22:00:59.826 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/timbarry/.nextflow/plugins
-Apr-11 22:00:59.828 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-Apr-11 22:00:59.830 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins local root: .nextflow/plr/empty
-Apr-11 22:00:59.836 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Apr-11 22:00:59.837 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Apr-11 22:00:59.841 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
-Apr-11 22:00:59.849 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Apr-11 22:00:59.889 [main] DEBUG nextflow.Session - Session uuid: 5a9d57dc-3473-4d13-a5d9-99a58124d24d
-Apr-11 22:00:59.889 [main] DEBUG nextflow.Session - Run name: gigantic_bohr
-Apr-11 22:00:59.890 [main] DEBUG nextflow.Session - Executor pool size: 8
-Apr-11 22:00:59.933 [main] DEBUG nextflow.cli.CmdRun - 
+Apr-12 13:10:17.950 [main] DEBUG nextflow.cli.Launcher - $> nextflow main.nf --param_file /Users/timbarry/research_code/undercover-gRNA-pipeline/param_file.R --data_method_pair_file /Users/timbarry/research_code/undercover-gRNA-pipeline/data_method_pair_file.groovy --result_dir /Users/timbarry/research_code/undercover-gRNA-pipeline
+Apr-12 13:10:18.079 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.04.3
+Apr-12 13:10:18.103 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [grave_celsius] - revision: 7991e07564
+Apr-12 13:10:18.115 [main] DEBUG nextflow.config.ConfigBuilder - Found config home: /Users/timbarry/.nextflow/config
+Apr-12 13:10:18.117 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/timbarry/.nextflow/config
+Apr-12 13:10:18.140 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Apr-12 13:10:18.809 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/timbarry/.nextflow/plugins
+Apr-12 13:10:18.811 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Apr-12 13:10:18.813 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins local root: .nextflow/plr/empty
+Apr-12 13:10:18.819 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Apr-12 13:10:18.820 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Apr-12 13:10:18.824 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Apr-12 13:10:18.831 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Apr-12 13:10:18.869 [main] DEBUG nextflow.Session - Session uuid: 715132cf-bd49-4f37-b455-f4fd0724a48e
+Apr-12 13:10:18.869 [main] DEBUG nextflow.Session - Run name: grave_celsius
+Apr-12 13:10:18.870 [main] DEBUG nextflow.Session - Executor pool size: 8
+Apr-12 13:10:18.888 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 21.04.3 build 5560
   Created: 21-07-2021 15:09 UTC (11:09 EDT)
   System: Mac OS X 10.16
   Runtime: Groovy 3.0.7 on OpenJDK 64-Bit Server VM 1.8.0_242-b08
   Encoding: UTF-8 (UTF-8)
-  Process: 97033@vpn-users-016-004.wharton.private.upenn.edu [10.150.16.4]
-  CPUs: 8 - Mem: 16 GB (2.4 GB) - Swap: 2 GB (1.4 GB)
-Apr-11 22:00:59.947 [main] DEBUG nextflow.Session - Work-dir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work [Mac OS X]
-Apr-11 22:00:59.964 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-Apr-11 22:00:59.973 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
-Apr-11 22:01:00.078 [main] DEBUG nextflow.Session - Session start invoked
-Apr-11 22:01:00.398 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-Apr-11 22:01:00.406 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: combine_results, run_method, obtain_dataset_ntc_tuples
-Apr-11 22:01:00.478 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Apr-11 22:01:00.478 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Apr-11 22:01:00.482 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-Apr-11 22:01:00.487 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=16 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
-Apr-11 22:01:00.636 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Apr-11 22:01:00.636 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Apr-11 22:01:00.651 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Apr-11 22:01:00.651 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Apr-11 22:01:00.655 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
-Apr-11 22:01:00.655 [main] DEBUG nextflow.Session - Session await
-Apr-11 22:01:00.692 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:00.696 [Task submitter] INFO  nextflow.Session - [39/3750e8] Submitted process > obtain_dataset_ntc_tuples
-Apr-11 22:01:02.351 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: obtain_dataset_ntc_tuples; status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/39/3750e81800dc4646ac9e0237ca1b78]
-Apr-11 22:01:02.386 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:02.386 [Task submitter] INFO  nextflow.Session - [17/9f8e64] Submitted process > run_method (1)
-Apr-11 22:01:02.407 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:02.409 [Task submitter] INFO  nextflow.Session - [11/85f017] Submitted process > run_method (8)
-Apr-11 22:01:02.414 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:02.414 [Task submitter] INFO  nextflow.Session - [86/5ee0f1] Submitted process > run_method (5)
-Apr-11 22:01:02.420 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:02.420 [Task submitter] INFO  nextflow.Session - [0d/1f9bab] Submitted process > run_method (4)
-Apr-11 22:01:02.426 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:02.427 [Task submitter] INFO  nextflow.Session - [1a/2765a3] Submitted process > run_method (2)
-Apr-11 22:01:02.433 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:02.434 [Task submitter] INFO  nextflow.Session - [56/624905] Submitted process > run_method (3)
-Apr-11 22:01:02.443 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:02.445 [Task submitter] INFO  nextflow.Session - [7f/a602f8] Submitted process > run_method (6)
-Apr-11 22:01:02.452 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:02.453 [Task submitter] INFO  nextflow.Session - [93/cd6c5d] Submitted process > run_method (7)
-Apr-11 22:01:05.594 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: run_method (2); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/1a/2765a3a96409d794d860cef9ea7d9a]
-Apr-11 22:01:05.599 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:05.599 [Task submitter] INFO  nextflow.Session - [7e/9276fc] Submitted process > run_method (9)
-Apr-11 22:01:05.606 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: run_method (3); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/56/624905359c938ef16f22dd49bf46f8]
-Apr-11 22:01:05.610 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: run_method (8); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/11/85f0170d66c0eb99a0f3d780ecff58]
-Apr-11 22:01:05.611 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:05.611 [Task submitter] INFO  nextflow.Session - [97/bfe663] Submitted process > run_method (10)
-Apr-11 22:01:05.615 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: run_method (4); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/0d/1f9babf826c5bbcc97a7e9f4c4b877]
-Apr-11 22:01:05.616 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:05.617 [Task submitter] INFO  nextflow.Session - [f7/948313] Submitted process > run_method (11)
-Apr-11 22:01:05.622 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:05.622 [Task submitter] INFO  nextflow.Session - [00/56b1f5] Submitted process > run_method (12)
-Apr-11 22:01:05.660 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: run_method (1); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/17/9f8e64312241b71f65c3a297904705]
-Apr-11 22:01:05.663 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: run_method (5); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/86/5ee0f1851ff411ed654756fc53950f]
-Apr-11 22:01:05.664 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:05.664 [Task submitter] INFO  nextflow.Session - [2b/9a737e] Submitted process > run_method (13)
-Apr-11 22:01:05.666 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: run_method (6); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/7f/a602f87be75574085ba90300e7791e]
-Apr-11 22:01:05.669 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: run_method (7); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/93/cd6c5d70b69a4dc5858b8e6d784dbe]
-Apr-11 22:01:05.671 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:05.672 [Task submitter] INFO  nextflow.Session - [33/8c0217] Submitted process > run_method (14)
-Apr-11 22:01:05.696 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:05.697 [Task submitter] INFO  nextflow.Session - [44/6f7404] Submitted process > run_method (15)
-Apr-11 22:01:05.702 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:05.702 [Task submitter] INFO  nextflow.Session - [51/f1eee5] Submitted process > run_method (19)
-Apr-11 22:01:08.427 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 20; name: run_method (19); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/51/f1eee5308d05183d0d4ecb52a51f20]
-Apr-11 22:01:08.433 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:08.433 [Task submitter] INFO  nextflow.Session - [91/8a59b3] Submitted process > run_method (17)
-Apr-11 22:01:08.586 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: run_method (10); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/97/bfe66386b92f1fcc9e43f1a47c63d3]
-Apr-11 22:01:08.589 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 13; name: run_method (12); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/00/56b1f5aba353d0df0fcf30236f77f6]
-Apr-11 22:01:08.592 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:08.592 [Task submitter] INFO  nextflow.Session - [fc/b2283b] Submitted process > run_method (18)
-Apr-11 22:01:08.598 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:08.598 [Task submitter] INFO  nextflow.Session - [c7/f05fb6] Submitted process > run_method (16)
-Apr-11 22:01:08.601 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: run_method (11); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/f7/9483135368232ae174a41e4ced4aa8]
-Apr-11 22:01:08.604 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:08.604 [Task submitter] INFO  nextflow.Session - [5b/1a2e5c] Submitted process > run_method (25)
-Apr-11 22:01:08.619 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: run_method (9); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/7e/9276fc70bcd411cac7dad6cb3788e5]
-Apr-11 22:01:08.622 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:08.623 [Task submitter] INFO  nextflow.Session - [7e/51f694] Submitted process > run_method (21)
-Apr-11 22:01:08.633 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 14; name: run_method (13); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/2b/9a737e25cf5af24665688c8dc511e4]
-Apr-11 22:01:08.636 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:08.636 [Task submitter] INFO  nextflow.Session - [62/538072] Submitted process > run_method (27)
-Apr-11 22:01:08.638 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16; name: run_method (15); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/44/6f7404a511a92afaecf6c2aba8d3e6]
-Apr-11 22:01:08.640 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:08.641 [Task submitter] INFO  nextflow.Session - [d8/6de8d5] Submitted process > run_method (20)
-Apr-11 22:01:08.672 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 15; name: run_method (14); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/33/8c02176f78dbaa0840df85bddc18b3]
-Apr-11 22:01:08.675 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:08.675 [Task submitter] INFO  nextflow.Session - [b9/a6b958] Submitted process > run_method (29)
-Apr-11 22:01:11.312 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 26; name: run_method (25); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/5b/1a2e5cd44494f31d7adbfdd9a288b2]
-Apr-11 22:01:11.314 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:11.315 [Task submitter] INFO  nextflow.Session - [47/6f3a53] Submitted process > run_method (22)
-Apr-11 22:01:11.330 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 21; name: run_method (20); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/d8/6de8d5991350a85a7e63200540aa41]
-Apr-11 22:01:11.334 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:11.334 [Task submitter] INFO  nextflow.Session - [05/51fc70] Submitted process > run_method (23)
-Apr-11 22:01:11.344 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 22; name: run_method (21); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/7e/51f6949e86180e71b2b19a10ed40eb]
-Apr-11 22:01:11.348 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 28; name: run_method (27); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/62/538072b51a7563654c1d67cbbc800d]
-Apr-11 22:01:11.350 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:11.350 [Task submitter] INFO  nextflow.Session - [b1/686086] Submitted process > run_method (31)
-Apr-11 22:01:11.354 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:11.354 [Task submitter] INFO  nextflow.Session - [31/b30422] Submitted process > run_method (24)
-Apr-11 22:01:11.370 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 30; name: run_method (29); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/b9/a6b958b94297239a1cb682877daa7d]
-Apr-11 22:01:11.373 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:11.373 [Task submitter] INFO  nextflow.Session - [b1/c9ba12] Submitted process > run_method (26)
-Apr-11 22:01:11.383 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 18; name: run_method (17); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/91/8a59b3f4e46f453d2e3be26f082758]
-Apr-11 22:01:11.386 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:11.386 [Task submitter] INFO  nextflow.Session - [0e/3383e2] Submitted process > run_method (28)
-Apr-11 22:01:11.546 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 19; name: run_method (18); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/fc/b2283bf71af16b135f74fee0ad0f63]
-Apr-11 22:01:11.548 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:11.548 [Task submitter] INFO  nextflow.Session - [ad/40046a] Submitted process > run_method (30)
-Apr-11 22:01:11.549 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 17; name: run_method (16); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/c7/f05fb660bc8b7170bd4a3803253f75]
-Apr-11 22:01:11.552 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:11.552 [Task submitter] INFO  nextflow.Session - [52/b9e1a0] Submitted process > run_method (32)
-Apr-11 22:01:14.009 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 23; name: run_method (22); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/47/6f3a532ad3aaf8e0ea90c1be88e5e9]
-Apr-11 22:01:14.012 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:14.012 [Task submitter] INFO  nextflow.Session - [e0/cf420a] Submitted process > run_method (33)
-Apr-11 22:01:14.020 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 24; name: run_method (23); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/05/51fc7036ad8a2d94dfbf7208952791]
-Apr-11 22:01:14.023 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:14.023 [Task submitter] INFO  nextflow.Session - [09/5b4970] Submitted process > run_method (38)
-Apr-11 22:01:14.035 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 32; name: run_method (31); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/b1/6860861c75a5054022af5bb9040915]
-Apr-11 22:01:14.038 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:14.039 [Task submitter] INFO  nextflow.Session - [54/8ceb16] Submitted process > run_method (34)
-Apr-11 22:01:14.058 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 25; name: run_method (24); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/31/b30422b152350abbcceb925bf57d46]
-Apr-11 22:01:14.060 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:14.060 [Task submitter] INFO  nextflow.Session - [6a/3911d0] Submitted process > run_method (35)
-Apr-11 22:01:14.066 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 27; name: run_method (26); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/b1/c9ba12be3fd519bc4b3cb8c3c2678a]
-Apr-11 22:01:14.068 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:14.069 [Task submitter] INFO  nextflow.Session - [a1/9b89dd] Submitted process > run_method (42)
-Apr-11 22:01:14.112 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 29; name: run_method (28); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/0e/3383e28da92805322270ce8d9286fa]
-Apr-11 22:01:14.118 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:14.118 [Task submitter] INFO  nextflow.Session - [39/3a3a57] Submitted process > run_method (37)
-Apr-11 22:01:14.205 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 33; name: run_method (32); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/52/b9e1a0cb6a9532f35c29f895ab2e44]
-Apr-11 22:01:14.208 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:14.208 [Task submitter] INFO  nextflow.Session - [08/b829fc] Submitted process > run_method (36)
-Apr-11 22:01:14.239 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 31; name: run_method (30); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/ad/40046a373afbc8b43ee52d336ca3c5]
-Apr-11 22:01:14.242 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:14.242 [Task submitter] INFO  nextflow.Session - [97/acf9c4] Submitted process > run_method (45)
-Apr-11 22:01:16.728 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 39; name: run_method (38); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/09/5b497067d176e5eb5fca23ef203d9e]
-Apr-11 22:01:16.730 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:16.730 [Task submitter] INFO  nextflow.Session - [b3/7c87b5] Submitted process > run_method (39)
-Apr-11 22:01:16.733 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 34; name: run_method (33); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/e0/cf420a1be49d868a64b044601afa91]
-Apr-11 22:01:16.735 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:16.736 [Task submitter] INFO  nextflow.Session - [78/ae5131] Submitted process > run_method (40)
-Apr-11 22:01:16.763 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 36; name: run_method (35); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/6a/3911d067e3e82c72cd3c41b76d9552]
-Apr-11 22:01:16.766 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:16.766 [Task submitter] INFO  nextflow.Session - [3d/b400ff] Submitted process > run_method (41)
-Apr-11 22:01:16.772 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 35; name: run_method (34); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/54/8ceb16d57ac9f53d5a517d18d476eb]
-Apr-11 22:01:16.773 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 43; name: run_method (42); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/a1/9b89dd1754c62647b9830f57bdad80]
-Apr-11 22:01:16.774 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:16.774 [Task submitter] INFO  nextflow.Session - [b7/bab7a0] Submitted process > run_method (44)
-Apr-11 22:01:16.777 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:16.778 [Task submitter] INFO  nextflow.Session - [2e/ead1c3] Submitted process > run_method (43)
-Apr-11 22:01:16.800 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 38; name: run_method (37); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/39/3a3a57cd66d7e8b7a977a4c8b1f256]
-Apr-11 22:01:16.802 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:16.802 [Task submitter] INFO  nextflow.Session - [b0/ac8714] Submitted process > run_method (46)
-Apr-11 22:01:16.942 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 37; name: run_method (36); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/08/b829fceedf398c34034a7be6171625]
-Apr-11 22:01:16.945 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:16.945 [Task submitter] INFO  nextflow.Session - [46/39f590] Submitted process > run_method (47)
-Apr-11 22:01:16.972 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 46; name: run_method (45); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/97/acf9c4a04706dae694fc9d6119146f]
-Apr-11 22:01:16.975 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:16.975 [Task submitter] INFO  nextflow.Session - [b9/753903] Submitted process > run_method (48)
-Apr-11 22:01:19.516 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 41; name: run_method (40); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/78/ae513124b677ffa45cb398fd31fde0]
-Apr-11 22:01:19.519 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:19.519 [Task submitter] INFO  nextflow.Session - [7e/9f79fb] Submitted process > run_method (54)
-Apr-11 22:01:19.535 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 40; name: run_method (39); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/b3/7c87b573f1dfc4deb33636114fad9c]
-Apr-11 22:01:19.536 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 42; name: run_method (41); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/3d/b400ffc2c0c88f1dc481c0796afc4e]
-Apr-11 22:01:19.537 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:19.537 [Task submitter] INFO  nextflow.Session - [12/2554f7] Submitted process > run_method (49)
-Apr-11 22:01:19.541 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 45; name: run_method (44); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/b7/bab7a0d0ea16080fb177fc0c3b3ca4]
-Apr-11 22:01:19.551 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:19.552 [Task submitter] INFO  nextflow.Session - [d4/ffcd4d] Submitted process > run_method (50)
-Apr-11 22:01:19.555 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:19.555 [Task submitter] INFO  nextflow.Session - [35/a40660] Submitted process > run_method (51)
-Apr-11 22:01:19.557 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 44; name: run_method (43); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/2e/ead1c37dbb71832ffeae5ac2261908]
-Apr-11 22:01:19.559 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:19.560 [Task submitter] INFO  nextflow.Session - [8a/450372] Submitted process > run_method (52)
-Apr-11 22:01:19.583 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 47; name: run_method (46); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/b0/ac8714d70ad0e04402386d67554697]
-Apr-11 22:01:19.587 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:19.587 [Task submitter] INFO  nextflow.Session - [79/44919f] Submitted process > run_method (53)
-Apr-11 22:01:19.727 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 48; name: run_method (47); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/46/39f59048ca94c283ad04f46da06fce]
-Apr-11 22:01:19.729 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:19.729 [Task submitter] INFO  nextflow.Session - [d7/9c0bdb] Submitted process > run_method (55)
-Apr-11 22:01:19.757 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 49; name: run_method (48); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/b9/753903f7793f0f7c460a6703e52b61]
-Apr-11 22:01:19.762 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:19.763 [Task submitter] INFO  nextflow.Session - [f8/59f589] Submitted process > run_method (56)
-Apr-11 22:01:22.386 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 50; name: run_method (49); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/12/2554f7681e6264526fba8f060c391a]
-Apr-11 22:01:22.389 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:22.389 [Task submitter] INFO  nextflow.Session - [f5/12c160] Submitted process > run_method (57)
-Apr-11 22:01:22.390 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 55; name: run_method (54); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/7e/9f79fbce83c0acb1482c54d8fb2da5]
-Apr-11 22:01:22.393 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:22.394 [Task submitter] INFO  nextflow.Session - [6e/71cff9] Submitted process > run_method (58)
-Apr-11 22:01:22.396 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 51; name: run_method (50); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/d4/ffcd4d2d3171b38559b077b2af26e7]
-Apr-11 22:01:22.397 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 53; name: run_method (52); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/8a/450372d9371fd2e9db44a08460a97c]
-Apr-11 22:01:22.399 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:22.399 [Task submitter] INFO  nextflow.Session - [a9/fa0c21] Submitted process > run_method (59)
-Apr-11 22:01:22.402 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:22.402 [Task submitter] INFO  nextflow.Session - [2e/a105c3] Submitted process > run_method (65)
-Apr-11 22:01:22.409 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 52; name: run_method (51); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/35/a406603e158d5c0cd2ee9b57dc0607]
-Apr-11 22:01:22.411 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:22.412 [Task submitter] INFO  nextflow.Session - [65/6ac477] Submitted process > run_method (60)
-Apr-11 22:01:22.449 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 54; name: run_method (53); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/79/44919f2ed47b715c3764e6481a1862]
-Apr-11 22:01:22.452 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:22.452 [Task submitter] INFO  nextflow.Session - [80/5484c3] Submitted process > run_method (61)
-Apr-11 22:01:22.600 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 57; name: run_method (56); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/f8/59f5892b559b41d853f873501f9446]
-Apr-11 22:01:22.603 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:22.603 [Task submitter] INFO  nextflow.Session - [6b/c8404f] Submitted process > run_method (62)
-Apr-11 22:01:22.617 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 56; name: run_method (55); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/d7/9c0bdbbfca62f7b1a64787e083bbfb]
-Apr-11 22:01:22.620 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:22.620 [Task submitter] INFO  nextflow.Session - [2b/316c6d] Submitted process > run_method (69)
-Apr-11 22:01:25.503 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 58; name: run_method (57); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/f5/12c160b5bc90e24ee19ca608851c92]
-Apr-11 22:01:25.505 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:25.505 [Task submitter] INFO  nextflow.Session - [2c/f8c6f4] Submitted process > run_method (64)
-Apr-11 22:01:25.530 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 59; name: run_method (58); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/6e/71cff9e97f607596a2f68b5bca720b]
-Apr-11 22:01:25.532 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:25.533 [Task submitter] INFO  nextflow.Session - [b5/6a7ee0] Submitted process > run_method (71)
-Apr-11 22:01:25.546 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 60; name: run_method (59); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/a9/fa0c21924c363017ef83755db10fa5]
-Apr-11 22:01:25.548 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:25.549 [Task submitter] INFO  nextflow.Session - [ff/8ac294] Submitted process > run_method (63)
-Apr-11 22:01:25.549 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 61; name: run_method (60); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/65/6ac477a9f700bd26436b56fdb21a71]
-Apr-11 22:01:25.552 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:25.552 [Task submitter] INFO  nextflow.Session - [79/41391f] Submitted process > run_method (73)
-Apr-11 22:01:25.563 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 66; name: run_method (65); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/2e/a105c34fda40d5b15e8c8b50c45c66]
-Apr-11 22:01:25.565 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:25.566 [Task submitter] INFO  nextflow.Session - [0b/9df901] Submitted process > run_method (66)
-Apr-11 22:01:25.648 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 62; name: run_method (61); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/80/5484c352384c5590492b87d0094852]
-Apr-11 22:01:25.651 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:25.651 [Task submitter] INFO  nextflow.Session - [9b/f5e4b6] Submitted process > run_method (75)
-Apr-11 22:01:25.917 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 70; name: run_method (69); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/2b/316c6db8c822f8497fa9e73436dcc9]
-Apr-11 22:01:25.920 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:25.920 [Task submitter] INFO  nextflow.Session - [a9/d80a94] Submitted process > run_method (67)
-Apr-11 22:01:25.923 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 63; name: run_method (62); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/6b/c8404f3ff67be6ea3c56a5e34a5461]
-Apr-11 22:01:25.925 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:25.925 [Task submitter] INFO  nextflow.Session - [e2/ef5203] Submitted process > run_method (77)
-Apr-11 22:01:29.241 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 74; name: run_method (73); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/79/41391f2dd046fce05e2c8e27ae3cc4]
-Apr-11 22:01:29.245 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:29.245 [Task submitter] INFO  nextflow.Session - [e7/cd46ac] Submitted process > run_method (68)
-Apr-11 22:01:29.257 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 64; name: run_method (63); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/ff/8ac2947b145500fd137ecf3c9032a7]
-Apr-11 22:01:29.260 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:29.260 [Task submitter] INFO  nextflow.Session - [d2/837339] Submitted process > run_method (70)
-Apr-11 22:01:29.275 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 72; name: run_method (71); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/b5/6a7ee0536773301bc35f6ed4cd6bd8]
-Apr-11 22:01:29.276 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 67; name: run_method (66); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/0b/9df901d22cf242ee8bb2e1795c8ed7]
-Apr-11 22:01:29.277 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:29.277 [Task submitter] INFO  nextflow.Session - [4e/794c16] Submitted process > run_method (72)
-Apr-11 22:01:29.281 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:29.281 [Task submitter] INFO  nextflow.Session - [78/3e323b] Submitted process > run_method (74)
-Apr-11 22:01:29.387 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 76; name: run_method (75); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/9b/f5e4b620a45c25a4fdf0708f68b651]
-Apr-11 22:01:29.390 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:29.390 [Task submitter] INFO  nextflow.Session - [6d/0949ad] Submitted process > run_method (76)
-Apr-11 22:01:29.488 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 65; name: run_method (64); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/2c/f8c6f4bc40af9ef04a950e4060b4f0]
-Apr-11 22:01:29.490 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:29.491 [Task submitter] INFO  nextflow.Session - [34/7a5302] Submitted process > run_method (78)
-Apr-11 22:01:29.558 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 68; name: run_method (67); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/a9/d80a94b4035daa66437bf5f32e5c1c]
-Apr-11 22:01:29.616 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 78; name: run_method (77); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/e2/ef5203d99a602f3642f3e356848d43]
-Apr-11 22:01:32.184 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 75; name: run_method (74); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/78/3e323bf2ab79840340e1157179ad51]
-Apr-11 22:01:32.200 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 71; name: run_method (70); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/d2/8373391d919e4f8728031caf6bdd29]
-Apr-11 22:01:32.206 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 73; name: run_method (72); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/4e/794c16b40c6533b823650f0e60570d]
-Apr-11 22:01:32.209 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 69; name: run_method (68); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/e7/cd46ac21600fb1114f0a56e58added]
-Apr-11 22:01:32.245 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 77; name: run_method (76); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/6d/0949ad12e272e0271d41055bf7a232]
-Apr-11 22:01:32.296 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 79; name: run_method (78); status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/34/7a53028e7610f3db07a6c5f2cfbe60]
-Apr-11 22:01:32.326 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Apr-11 22:01:32.326 [Task submitter] INFO  nextflow.Session - [4a/454cf5] Submitted process > combine_results
-Apr-11 22:01:33.541 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 80; name: combine_results; status: COMPLETED; exit: 0; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/4a/454cf5e190b84ef0fc644f5485dcc8]
-Apr-11 22:01:33.552 [Task monitor] DEBUG n.util.BlockingThreadExecutorFactory - Thread pool name=FileTransfer; maxThreads=24; maxQueueSize=72; keepAlive=1m
-Apr-11 22:01:33.558 [main] DEBUG nextflow.Session - Session await > all process finished
-Apr-11 22:01:33.559 [main] DEBUG nextflow.Session - Session await > all barriers passed
-Apr-11 22:01:33.568 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=80; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=3m 52s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=8; peakCpus=8; peakMemory=0; ]
-Apr-11 22:01:33.598 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
-Apr-11 22:01:33.610 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+  Process: 56370@tims-mbp-2021.wifi.local.cmu.edu [172.26.14.150]
+  CPUs: 8 - Mem: 16 GB (1.8 GB) - Swap: 2 GB (1 GB)
+Apr-12 13:10:18.904 [main] DEBUG nextflow.Session - Work-dir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work [Mac OS X]
+Apr-12 13:10:18.921 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Apr-12 13:10:18.930 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Apr-12 13:10:19.030 [main] DEBUG nextflow.Session - Session start invoked
+Apr-12 13:10:19.161 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Apr-12 13:10:19.193 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: 
+Apr-12 13:10:19.208 [main] INFO  nextflow.script.BaseScript - [papalexi_gene:[seurat_de, schraivogel_method], schraivogel_tap:[seurat_de, schraivogel_method], schraivogel_perturb:[seurat_de, schraivogel_method]]
+Apr-12 13:10:19.209 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Apr-12 13:10:19.209 [main] DEBUG nextflow.Session - Session await
+Apr-12 13:10:19.209 [main] DEBUG nextflow.Session - Session await > all process finished
+Apr-12 13:10:19.209 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Apr-12 13:10:19.218 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=0; peakCpus=0; peakMemory=0; ]
+Apr-12 13:10:19.273 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Apr-12 13:10:19.292 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

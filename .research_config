@@ -1,0 +1,35 @@
+# local and remote paths to top-level data directories
+
+# code
+LOCAL_CODE_DIR="/Users/timbarry/research_code/"
+
+# local data; subdirectories for PROJECT and external data
+LOCAL_DATA_DIR="/Users/timbarry/research_offsite/"
+LOCAL_PROJECT_DATA_DIR=$LOCAL_DATA_DIR"projects/"
+LOCAL_EXTERNAL_DATA_DIR=$LOCAL_DATA_DIR"external/"
+# remote data; subdirectories for PROJECT and external data
+REMOTE_PROJECT_DATA_DIR="timbar@hpcc.wharton.upenn.edu:~/data/projects/"
+REMOTE_EXTERNAL_DATA_DIR="timbar@hpcc.wharton.upenn.edu:~/data/external/"
+
+
+# local paths to project-specific data directories
+LOCAL_GLMEIV_DATA_DIR=$LOCAL_PROJECT_DATA_DIR"glmeiv/"
+LOCAL_SCEPTRE_DATA_DIR=$LOCAL_PROJECT_DATA_DIR"sceptre/"
+
+# local paths to external data directories
+LOCAL_GASPERINI_2019_DATA_DIR=$LOCAL_EXTERNAL_DATA_DIR"gasperini-2019/"
+LOCAL_XIE_2019_DATA_DIR=$LOCAL_EXTERNAL_DATA_DIR"xie-2019/"
+LOCAL_PAPALEXI_2021_DATA_DIR=$LOCAL_EXTERNAL_DATA_DIR"papalexi-2021/"
+LOCAL_SCHRAIVOGEL_2020_DATA_DIR=$LOCAL_EXTERNAL_DATA_DIR"schraivogel-2020/"
+LOCAL_LISCOVITCH_2021_DATA_DIR=$LOCAL_EXTERNAL_DATA_DIR"liscovitch-2021/"
+LOCAL_NAGY_2020_DATA_DIR=$LOCAL_EXTERNAL_DATA_DIR"nagy-2020/"
+
+# remote paths to project-specific data directories
+REMOTE_GLMEIV_DATA_DIR=$REMOTE_PROJECT_DATA_DIR"glmeiv/"
+REMOTE_SCEPTRE_DATA_DIR=$REMOTE_PROJECT_DATA_DIR"sceptre/"
+
+# remote paths to external data directories
+REMOTE_XIE_2019_DATA_DIR=$REMOTE_EXTERNAL_DATA_DIR"xie-2019/"
+REMOTE_GASPERINI_2019_DATA_DIR=$REMOTE_EXTERNAL_DATA_DIR"gasperini-2019/"
+REMOTE_PAPALEXI_2021_DATA_DIR=$REMOTE_EXTERNAL_DATA_DIR"papalexi-2021/"
+REMOTE_SCHRAIVOGEL_2020_DATA_DIR=$REMOTE_EXTERNAL_DATA_DIR"schraivogel-2020/"

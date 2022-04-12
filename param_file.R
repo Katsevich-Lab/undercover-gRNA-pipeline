@@ -21,4 +21,6 @@ data_list <- list(
                       gRNA_metadata_fp = paste0(schraivogel_offsite, "processed/ground_truth_tapseq/gRNA/raw_ungrouped_metadata.rds"))
 )
 
+method_list <- c("seurat_de", "schraivogel_method")
+
 # ADD: Papalexi protein modality, Schraivogel perturb-seq

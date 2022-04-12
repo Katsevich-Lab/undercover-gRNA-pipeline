@@ -1,0 +1,78 @@
+Apr-11 21:59:32.927 [main] DEBUG nextflow.cli.Launcher - $> nextflow main.nf --data_file /Users/timbarry/research_code/undercover-gRNA-pipeline/data_file.R --result_dir /Users/timbarry/research_code/undercover-gRNA-pipeline
+Apr-11 21:59:33.034 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.04.3
+Apr-11 21:59:33.083 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [deadly_ekeblad] - revision: 0c55704bf9
+Apr-11 21:59:33.097 [main] DEBUG nextflow.config.ConfigBuilder - Found config home: /Users/timbarry/.nextflow/config
+Apr-11 21:59:33.099 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/timbarry/.nextflow/config
+Apr-11 21:59:33.124 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Apr-11 21:59:33.997 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/timbarry/.nextflow/plugins
+Apr-11 21:59:33.998 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Apr-11 21:59:34.001 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins local root: .nextflow/plr/empty
+Apr-11 21:59:34.011 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Apr-11 21:59:34.013 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Apr-11 21:59:34.017 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Apr-11 21:59:34.026 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Apr-11 21:59:34.095 [main] DEBUG nextflow.Session - Session uuid: f7eae80e-ecf8-4655-b71f-96add8e1efed
+Apr-11 21:59:34.095 [main] DEBUG nextflow.Session - Run name: deadly_ekeblad
+Apr-11 21:59:34.096 [main] DEBUG nextflow.Session - Executor pool size: 8
+Apr-11 21:59:34.143 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 21.04.3 build 5560
+  Created: 21-07-2021 15:09 UTC (11:09 EDT)
+  System: Mac OS X 10.16
+  Runtime: Groovy 3.0.7 on OpenJDK 64-Bit Server VM 1.8.0_242-b08
+  Encoding: UTF-8 (UTF-8)
+  Process: 96866@vpn-users-016-004.wharton.private.upenn.edu [10.150.16.4]
+  CPUs: 8 - Mem: 16 GB (2.5 GB) - Swap: 2 GB (1.4 GB)
+Apr-11 21:59:34.166 [main] DEBUG nextflow.Session - Work-dir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work [Mac OS X]
+Apr-11 21:59:34.194 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Apr-11 21:59:34.209 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Apr-11 21:59:34.379 [main] DEBUG nextflow.Session - Session start invoked
+Apr-11 21:59:34.715 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Apr-11 21:59:34.722 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: combine_results, run_method, obtain_dataset_ntc_tuples
+Apr-11 21:59:34.797 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Apr-11 21:59:34.797 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Apr-11 21:59:34.803 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Apr-11 21:59:34.811 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=16 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Apr-11 21:59:35.016 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Apr-11 21:59:35.016 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Apr-11 21:59:35.022 [Actor Thread 3] DEBUG nextflow.util.CacheHelper - Unable to get file attributes file: /Users/timbarry/research_code/undercover-gRNA-pipeline/data_file.R -- Cause: java.nio.file.NoSuchFileException: /Users/timbarry/research_code/undercover-gRNA-pipeline/data_file.R
+Apr-11 21:59:35.034 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Apr-11 21:59:35.034 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Apr-11 21:59:35.038 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Apr-11 21:59:35.038 [main] DEBUG nextflow.Session - Session await
+Apr-11 21:59:35.078 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Apr-11 21:59:35.084 [Task submitter] INFO  nextflow.Session - [dc/c40f05] Submitted process > obtain_dataset_ntc_tuples
+Apr-11 21:59:35.503 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: obtain_dataset_ntc_tuples; status: COMPLETED; exit: 1; error: -; workDir: /Users/timbarry/research_code/undercover-gRNA-pipeline/work/dc/c40f05abc8105be2bcaefbbde9c729]
+Apr-11 21:59:35.552 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'obtain_dataset_ntc_tuples'
+
+Caused by:
+  Process `obtain_dataset_ntc_tuples` terminated with an error exit status (1)
+
+Command executed:
+
+  get_dataset_ntc_tuples.R data_file.R
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  Error in file(filename, "r", encoding = encoding) : 
+    cannot open the connection
+  Calls: source -> file
+  In addition: Warning message:
+  In file(filename, "r", encoding = encoding) :
+    cannot open file 'data_file.R': No such file or directory
+  Execution halted
+
+Work dir:
+  /Users/timbarry/research_code/undercover-gRNA-pipeline/work/dc/c40f05abc8105be2bcaefbbde9c729
+
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
+Apr-11 21:59:35.560 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Process `obtain_dataset_ntc_tuples` terminated with an error exit status (1)
+Apr-11 21:59:35.560 [main] DEBUG nextflow.Session - Session await > all process finished
+Apr-11 21:59:35.574 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Apr-11 21:59:35.582 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=370ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
+Apr-11 21:59:35.779 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Apr-11 21:59:35.796 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

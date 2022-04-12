@@ -14,7 +14,7 @@ source(data_file)
 library(ondisc)
 
 # read gene expression matrix and gRNA expression matrix
-curr_fps <- data_list[[dataset_name]] 
+curr_fps <- data_list[[dataset_name]]
 response_odm <- read_odm(odm_fp = curr_fps[["response_odm_fp"]],
                      metadata_fp = curr_fps[["response_metadata_fp"]])
 gRNA_odm <- read_odm(odm_fp = curr_fps[["gRNA_odm_fp"]],
@@ -37,14 +37,15 @@ gRNA_odm_swapped <- gRNA_odm |> mutate_feature_covariates(target_type = gRNA_fea
 
 # obtain the (response, gRNA) pairs to analyze
 pairs_df <- data.frame(response_id = get_feature_ids(response_odm),
-                       gRNA_id = undercover_ntc_name)
+                       gRNA_group = undercover_ntc_name)
 
 # call the method (UPDATE; pass gRNA ODM, response ODM, and gRNA-response pairs; return the gRNA-response pairs data frame with a column "p_value" appended)
 result_df <- pairs_df
+# do.call(what = method_name, )
 
 # add columns indicating the undercover gRNA, dataset name, and method name
 out <- result_df |>
-  dplyr::mutate(undercover_gRNA = gRNA_id, gRNA_id = NULL, dataset = dataset_name, method = method_name) |>
+  dplyr::mutate(undercover_gRNA = gRNA_group, gRNA_group = NULL, dataset = dataset_name, method = method_name) |>
   dplyr::mutate_all(factor)
 
 # save result

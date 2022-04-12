@@ -1,3 +1,4 @@
-.nexflow*
+.nextflow*
 .Rhistory
 work
+undercover_gRNA_check_results.rds

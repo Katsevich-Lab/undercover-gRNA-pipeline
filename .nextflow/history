@@ -1,1 +1,2 @@
 2022-04-11 21:59:34	1.8s	deadly_ekeblad	ERR	0c55704bf95ee9a70d8ff06941ecdcf7	f7eae80e-ecf8-4655-b71f-96add8e1efed	nextflow main.nf --data_file /Users/timbarry/research_code/undercover-gRNA-pipeline/data_file.R --result_dir /Users/timbarry/research_code/undercover-gRNA-pipeline
+2022-04-11 22:00:59	34.6s	gigantic_bohr	OK	0c55704bf95ee9a70d8ff06941ecdcf7	5a9d57dc-3473-4d13-a5d9-99a58124d24d	nextflow main.nf --data_file /Users/timbarry/research_code/undercover-gRNA-pipeline/data_file.R --result_dir /Users/timbarry/research_code/undercover-gRNA-pipeline

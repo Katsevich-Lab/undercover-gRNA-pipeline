@@ -2,11 +2,17 @@
 // i. data_file
 // ii. method_data_pair_file
 
+// STEP 0: Determine the dataset-method pairs
 evaluate(new File(params.data_method_pair_file))
-println(data_method_pairs)
+def data_method_pairs_list = []
+  for (entry in data_method_pairs) {
+    for (value in entry.value) {
+      data_method_pairs_list << [entry.key, value]
+    }
+}
+data_method_pairs_ch = Channel.from(data_method_pairs_list)
 
 
-/*
 // PROCESS 1: Obain tuples of datastes and NTC pairs
 process obtain_dataset_ntc_tuples {
 
@@ -20,29 +26,15 @@ path param_file from params.param_file
 get_dataset_ntc_tuples.R $param_file
 """
 }
-dataset_ntc_pairs = dataset_names_raw.splitText().map{it.trim()}
+dataset_ntc_pairs = dataset_names_raw.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
 
-// PROCESS 2: Obain methods to apply to data
-process obtain_methods {
-
-output:
-stdout method_names_raw
-
-input:
-path param_file from params.param_file
-
-"""
-get_methods.R $param_file
-"""
-}
-methods_ch = method_names_raw.splitText().map{it.trim()}
+// STEP 2: Combine the methods and NTCs, then filter
+dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 0)
+dataset_ntc_method_tuples.view()
 
 
-// Mix the methods and NTCs.
-dataset_ntc_method_tuples = dataset_ntc_pairs.combine(methods_ch)
-
-
+/*
 // PROCESS 3: Run methods on undercover gRNAs
 process run_method {
   output:

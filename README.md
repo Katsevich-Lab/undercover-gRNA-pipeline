@@ -67,7 +67,7 @@ data_list <- list(
 )
 ```
 
-A named list called `data_list` should be defined, with the names corresponding to different datasets (in the above example, "papalexi_gene", "schraivogel_tap", and "schraivogel_perturb"). Each entry of named list should be a named character vector with the following entries: "response_odm_fp" (file path to the backing .odm file of the response matrix), "response_metadata_fp" (file path to the metadata.rds file of the response matrix), "gRNA_odm_fp" (file path to the backing .odm file of the gRNA matrix), and "gRNA_metadata_fp" (file path to the metadata.rds file of gRNA matrix). We call the `.get_config_path` function to specify full file paths in a portable way, but this is not strictly speaking necessary; all that is required is that the specified files be available on the machine on which the pipeline is being run.
+A named list called `data_list` should be defined, with the names corresponding to different datasets (in the above example, "papalexi_gene", "schraivogel_tap", and "schraivogel_perturb"). Each entry of the named list should be a named character vector with the following entries: "response_odm_fp" (file path to the backing .odm file of the response matrix), "response_metadata_fp" (file path to the metadata.rds file of the response matrix), "gRNA_odm_fp" (file path to the backing .odm file of the gRNA matrix), and "gRNA_metadata_fp" (file path to the metadata.rds file of gRNA matrix). We call the `.get_config_path` function to specify full file paths in a portable way, but this is not strictly speaking necessary; all that is required is that the specified files be available on the machine on which the pipeline is being run.
 
 #### ii. `data_method_pair_file`
 
@@ -96,11 +96,11 @@ The pipeline outputs a result file that by default is called `undercover_gRNA_ch
 The data should be supplied in `ondisc` format. Specifically, the "response" matrix and gRNA matrix both should be `covariate_ondisc_matrix` objects. The feature covariates data frame of the gRNA matrix *must* contain a column called `target_type` indicating the target type of each gRNA. Furthermore, one of the values of this column *must* be "non-targeting".
 
 ### 4. Method API
-All methods should be implemented in the [lowmoi](https://github.com/Katsevich-Lab/lowmoi) R package. Each method listed in the `data_method_pair_file` should be a function exported by `lowmoi`. (In the above example, therefore, "schraivogel_method" and "seurat_de" both are exported by `lowmoi`).
+All methods should be implemented in the [lowmoi](https://github.com/Katsevich-Lab/lowmoi) R package. Each method listed in the `data_method_pair_file` should be a function exported by `lowmoi`. (In the above example "schraivogel_method" and "seurat_de" both should be exported by `lowmoi`).
 
-A given method exported by `lowmoi` should have formal parameters `response_odm`, `gRNA_odm`, and `response_gRNA_group_pairs`. `response_odm` is the response ODM; `gRNA_odm` is the matrix of gRNA expressions (or indicators); and `response_gRNA_group_pairs` is a data frame with columns `response_id` and `gRNA_group` giving response-gRNA pairs to analyze. (By default, each gRNA group is a group of size one, i.e. a single gRNA.) The method should output a data frame with columns `response_id`, `gRNA_group`, and `p_value`.
+A given method exported by `lowmoi` should have formal parameters `response_odm`, `gRNA_odm`, and `response_gRNA_group_pairs`. `response_odm` is the response ODM; `gRNA_odm` is the matrix of gRNA expressions (or indicators); and `response_gRNA_group_pairs` is a data frame with columns `response_id` and `gRNA_group` giving response-gRNA pairs to analyze. (This pipeline assumes that each gRNA group is a group of size one, i.e. a single gRNA.) The method should output a data frame with columns `response_id`, `gRNA_group`, and `p_value`.
 
-Each method exported by `lowmoi` should be documented. The Roxygen command `@inherit abstract_interface` should be inserted to inherit unified documentation for the parameters `response_odm`, `gRNA_odm`, and `response_gRNA_group_pairs`, as well as the return data frame. Any additional parameters should be documented manually. For example, the Roxygen documentation for `schraivogel_method` is below.
+Each method exported by `lowmoi` should be documented. The Roxygen command `@inherit abstract_interface` should be added to inherit documentation for the parameters `response_odm`, `gRNA_odm`, and `response_gRNA_group_pairs`, as well as the return data frame. Any additional parameters should be documented manually. For example, the Roxygen documentation for `schraivogel_method` is below.
 
 ```
 #' Run Schraivogel's MAST.cov method
@@ -115,6 +115,7 @@ Each method exported by `lowmoi` should be documented. The Roxygen command `@inh
 #'
 #' @export
 ```
+Run `library(lowmoi); ?schraivogel_method` to see the compiled documentation.
 
 ## Invoking the pipeline
 
@@ -128,4 +129,4 @@ nextflow run https://github.com/Katsevich-Lab/undercover-gRNA-pipeline -r main \
  --result_dir "path/to/result_dir"
 ```
 
-The arguments to `data_file`, `data_method_pair_file`, and `result_dir` are specified as command line arguments. It is best to wrap this call inside a bash script to facilate (i) ease of use and (ii) submission to a cluster scheduler.
+The arguments to `data_file`, `data_method_pair_file`, and `result_dir` should be specified as command line arguments. It is best to wrap this call inside a bash script to facilate (i) ease of use and (ii) submission to a cluster scheduler.

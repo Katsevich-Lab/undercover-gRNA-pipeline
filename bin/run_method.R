@@ -56,7 +56,7 @@ if (!identical(sort(colnames(result_df)), c("gRNA_group", "p_value", "response_i
 # add columns indicating the undercover gRNA, dataset name, and method name
 out <- result_df |>
   dplyr::mutate(undercover_gRNA = gRNA_group, gRNA_group = NULL, dataset = dataset_name, method = method_name) |>
-  dplyr::mutate_all(factor)
+  dplyr::mutate_at(.tbl = ., .vars = c("undercover_gRNA", "gRNA_group", "dataset", "method"), .funs = factor)
 
 # save result
 saveRDS(object = out, file = "raw_result.rds")

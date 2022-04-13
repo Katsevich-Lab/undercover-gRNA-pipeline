@@ -78,7 +78,7 @@ data_method_pairs = [schraivogel_tap: ["schraivogel_method", "seurat_de"],
                      papalexi_gene: ["seurat_de"]]
 ```
 
-`data_method_pairs` is a groovy [map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), i.e. a set of key-value pairs. The keys should be the names of datasets to analyze (in the above example, "schraivogel_tap" and "papalexi_gene"); the keys must be a (possibly proper) subset of the datasets defined in `data_file`. The value for a given key (i.e., dataset) should be a string array giving the methods to evaluate on that dataset. In the above example we specify that we seek to evaluate "schraivogel_method" and "seurat_de" on "schraivogel_tap" and "seurat_de" on "papalexi_gene".
+`data_method_pairs` is a groovy [map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), i.e. a set of key-value pairs. The keys should be the names of datasets to analyze (in the above example, "schraivogel_tap" and "papalexi_gene") and must be a (possibly proper) subset of the datasets defined in `data_file`. The value for a given key (i.e., dataset) should be a string array giving the methods to evaluate on that dataset. In the above example we specify to the pipeline to evaluate "schraivogel_method" and "seurat_de" on "schraivogel_tap" and "seurat_de" on "papalexi_gene".
 
 #### iii. `result_dir`
 
@@ -88,12 +88,44 @@ The directory in which to store the results.
 
 The name of the result file, "undercover_gRNA_check_results.rds" by default.
 
-gRNA and response ODMs
+### 2. Pipeline output
 
-1. The gRNA ODM should have a column called "target_type" in its `features_metadata` data frame;
-this column should contain the type of target of each gRNA. Non-targeting gRNAs should be
-labeled "non-targeting".
+The pipeline outputs a result file that by default is called `undercover_gRNA_check_results.rds`. This is a data frame with the following columns: `response_id`, `undercover_gRNA`, `dataset`, `method` (all factors) and `p_value` (numeric).
 
-2. The response ODM should contain contain only genes to be used in the calibration assessment. By default we pair each undercover NTC to the entire set of features in the response ODM.
+### 3. Data format
+The data should be supplied in `ondisc` format. Specifically, the "response" matrix and gRNA matrix both should be `covariate_ondisc_matrix` objects. The feature covariates data frame of the gRNA matrix *must* contain a column called `target_type` indicating the target type of each gRNA. Furthermore, one of the values of this column *must* be "non-targeting".
+
+### 4. Method API
+All methods should be implemented in the [lowmoi](https://github.com/Katsevich-Lab/lowmoi) R package. Each method listed in the `data_method_pair_file` should be a function exported by `lowmoi`. (In the above example, therefore, "schraivogel_method" and "seurat_de" both are exported by `lowmoi`).
+
+A given method exported by `lowmoi` should have formal parameters `response_odm`, `gRNA_odm`, and `response_gRNA_group_pairs`. `response_odm` is the response ODM; `gRNA_odm` is the matrix of gRNA expressions (or indicators); and `response_gRNA_group_pairs` is a data frame with columns `response_id` and `gRNA_group` giving response-gRNA pairs to analyze. (By default, each gRNA group is a group of size one, i.e. a single gRNA.) The method should output a data frame with columns `response_id`, `gRNA_group`, and `p_value`.
+
+Each method exported by `lowmoi` should be documented. The Roxygen command `@inherit abstract_interface` should be inserted to inherit unified documentation for the parameters `response_odm`, `gRNA_odm`, and `response_gRNA_group_pairs`, as well as the return data frame. Any additional parameters should be documented manually. For example, the Roxygen documentation for `schraivogel_method` is below.
+
+```
+#' Run Schraivogel's MAST.cov method
+#'
+#' Runs Schraivogel's MAST.cov method.
+#'
+#' @inherit abstract_interface
+#' @param gRNA_groups_table A table specifying which gRNAs are in which groups, as in \code{sceptre}.
+#' This argument is optional, and the default assumption is that each gRNA is in its own group.
+#' @param gRNA_threshold A threshold for gRNA expression. This argument is optional, and defaults to 8,
+#' which was Schraivogel et al's choice.
+#'
+#' @export
+```
 
 ## Invoking the pipeline
+
+One can invoke the pipeline by running the following command on the command line:
+
+```
+nextflow pull
+nextflow run https://github.com/Katsevich-Lab/undercover-gRNA-pipeline -r main \
+ --data_file "path/to/data_file.R" \
+ --data_method_pair_file "path/to/data_method_pair_file.groovy" \
+ --result_dir "path/to/result_dir"
+```
+
+The arguments to `data_file`, `data_method_pair_file`, and `result_dir` are specified as command line arguments. It is best to wrap this call inside a bash script to facilate (i) ease of use and (ii) submission to a cluster scheduler.

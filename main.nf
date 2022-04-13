@@ -31,25 +31,29 @@ dataset_ntc_pairs = dataset_names_raw.splitText().map{it.trim().split(" ")}.map{
 
 // STEP 2: Combine the methods and NTCs, then filter
 dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 0)
-dataset_ntc_method_tuples.view()
 
 
-/*
 // PROCESS 3: Run methods on undercover gRNAs
 process run_method {
-  output:
-  file 'raw_result.rds' into raw_results_ch
+  echo true
+
+  //output:
+  //file 'raw_result.rds' into raw_results_ch
 
   input:
   path param_file from params.param_file
-  tuple val(dataset_ntc), val(method) from dataset_ntc_method_tuples
+  tuple val(dataset), val(ntc), val(method) from dataset_ntc_method_tuples
+
+  //"""
+  //run_method.R $param_file $dataset $ntc $method
+  //"""
 
   """
-  run_method.R $param_file $dataset_ntc $method
+  echo dataset $dataset, ntc $ntc, method $method
   """
 }
 
-
+/*
 // PROCESS 4: Combine results
 params.result_file_name = "undercover_gRNA_check_results.rds"
 process combine_results {

@@ -1,6 +1,6 @@
 # undercover-gRNA-pipeline
 
-A Nextflow pipeline to carry out the "undercover gRNA" negative control calibration assessment on a collection of methods and datasets.
+A Nextflow/R/groovy pipeline for carrying out the "undercover gRNA" negative control calibration assessment on a user-specified collection of methods and datasets.
 
 ## Example usage
 

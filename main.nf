@@ -17,7 +17,7 @@ data_method_pairs_ch = Channel.from(data_method_pairs_list)
 process obtain_dataset_ntc_tuples {
 
 output:
-stdout dataset_names_raw
+path "dataset_names_raw.txt" into dataset_names_raw_ch
 
 input:
 path data_file from params.data_file
@@ -26,7 +26,7 @@ path data_file from params.data_file
 get_dataset_ntc_tuples.R $data_file
 """
 }
-dataset_ntc_pairs = dataset_names_raw.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
+dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
 
 // STEP 2: Combine the methods and NTCs, then filter

@@ -12,7 +12,7 @@ for (dataset_name in names(data_list)) {
   gRNA_metadata <- data_list[[dataset_name]][["gRNA_metadata_fp"]]
   x <- readRDS(gRNA_metadata)
   gRNA_feature_covariates <- x[["feature_covariates"]]
-  
+
   # some basic correctness checks
   if (!("target_type" %in% colnames(gRNA_feature_covariates))) {
     stop("The column `target_type` must be present in the feature covariates data frame of the gRNA ondisc matrix.")
@@ -20,7 +20,7 @@ for (dataset_name in names(data_list)) {
   if (!("non-targeting" %in% gRNA_feature_covariates$target_type)) {
     stop("The `target_type` column of the gRNA feature covariates data frame must have at least one entry `non-targeting`.")
   }
-  
+
   # get NTC names
   ntc_names <- gRNA_feature_covariates |>
     dplyr::filter(target_type == "non-targeting") |>
@@ -28,4 +28,7 @@ for (dataset_name in names(data_list)) {
   out <- c(out, paste(dataset_name, ntc_names))
 }
 
-cat(paste0(out, collapse = "\n"))
+# write to disk
+file_con <- file("dataset_names_raw.txt")
+writeLines(out, file_con)
+close(file_con)

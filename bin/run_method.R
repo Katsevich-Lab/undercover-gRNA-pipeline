@@ -46,7 +46,7 @@ if (!all(c("response_odm", "gRNA_odm", "response_gRNA_group_pairs") %in% formal_
 }
 
 result_df <- do.call(what = method_name, args = list(response_odm = response_odm,
-                                                     gRNA_odm = gRNA_odm,
+                                                     gRNA_odm = gRNA_odm_swapped,
                                                      response_gRNA_group_pairs = response_gRNA_group_pairs))
 
 if (!identical(sort(colnames(result_df)), c("gRNA_group", "p_value", "response_id"))) {

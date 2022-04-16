@@ -2,6 +2,7 @@
 // i. data_file
 // ii. method_data_pair_file
 
+
 // STEP 0: Determine the dataset-method pairs
 evaluate(new File(params.data_method_pair_file))
 def data_method_pairs_list = []
@@ -35,6 +36,10 @@ dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 
 
 // PROCESS 3: Run methods on undercover gRNAs
 process run_method {
+
+  label "ram_${8 * Math.pow(2, task.attempt - 1)}g"
+  errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
+  maxRetries 4
 
   output:
   file 'raw_result.rds' into raw_results_ch

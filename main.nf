@@ -37,7 +37,7 @@ dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 
 // PROCESS 3: Run methods on undercover gRNAs
 process run_method {
 
-  label "ram_${8 * Math.pow(2, task.attempt - 1)}g"
+  clusterOptions "-l m_mem_free=${(8 * Math.pow(2, task.attempt - 1)).toInteger()}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\' "
   errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
   maxRetries 4
 
@@ -49,7 +49,7 @@ process run_method {
   tuple val(dataset), val(ntc), val(method) from dataset_ntc_method_tuples
 
   """
-  run_method.R $data_file $dataset $ntc $method
+  run_method.R $data_file $dataset $ntc $method ${(8 * Math.pow(2, task.attempt - 1)).toInteger()}
   """
 }
 

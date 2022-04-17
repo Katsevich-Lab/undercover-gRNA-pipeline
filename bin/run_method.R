@@ -6,6 +6,7 @@ data_file <- args[1]
 dataset_name <- args[2]
 undercover_ntc_name <- args[3]
 method_name <- args[4]
+ram_req <- args[5]
 
 # load the data fps
 source(data_file)
@@ -55,8 +56,8 @@ if (!identical(sort(colnames(result_df)), c("gRNA_group", "p_value", "response_i
 
 # add columns indicating the undercover gRNA, dataset name, and method name
 out <- result_df |>
-  dplyr::mutate(undercover_gRNA = gRNA_group, gRNA_group = NULL, dataset = dataset_name, method = method_name) |>
-  dplyr::mutate_at(.vars = c("response_id", "undercover_gRNA", "dataset", "method"), .funs = factor)
+  dplyr::mutate(undercover_gRNA = gRNA_group, gRNA_group = NULL, dataset = dataset_name, method = method_name, ram_req = ram_req) |>
+  dplyr::mutate_at(.vars = c("response_id", "undercover_gRNA", "dataset", "method", "ram_req"), .funs = factor)
 
 # save result
 saveRDS(object = out, file = "raw_result.rds")

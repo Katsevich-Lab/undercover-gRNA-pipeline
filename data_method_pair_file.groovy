@@ -1,8 +1,8 @@
 // FIRST, define the dataset-method pairs to analyze in a map
-data_method_pairs = [schraivogel_tap: ["schraivogel_method", "seurat_de"],
-                     schraivogel_perturb: ["schraivogel_method", "seurat_de"],
-                     papalexi_gene: ["schraivogel_method", "seurat_de"]]
-// data_method_pairs = [schraivogel_tap: ["schraivogel_method", "seurat_de"]]
+// data_method_pairs = [schraivogel_tap: ["schraivogel_method", "seurat_de"],
+//                     schraivogel_perturb: ["schraivogel_method", "seurat_de"],
+//                     papalexi_gene: ["schraivogel_method", "seurat_de"]]
+data_method_pairs = [schraivogel_tap: ["seurat_de"]]
 
 
 // SECOND, define a matrix indicating the amount of RAM to request for each dataset-method pair

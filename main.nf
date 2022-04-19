@@ -42,7 +42,7 @@ process run_method {
   errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
   maxRetries 1
 
-  tag "run_method_$dataset#$method#$ntc"
+  tag "$dataset#$method#$ntc"
 
   output:
   file 'raw_result.rds' into raw_results_ch

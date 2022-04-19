@@ -7,7 +7,7 @@ data_method_pairs = [schraivogel_tap: ["schraivogel_method", "seurat_de"],
 
 // SECOND, define a matrix indicating the amount of RAM to request for each dataset-method pair
 data_method_ram_matrix = [[8, 8],
-                          [64, 8],
+                          [64, 16],
                           [64, 8]]
 row_names = ["schraivogel_tap", "schraivogel_perturb", "papalexi_gene"]
 col_names = ["schraivogel_method", "seurat_de"]

@@ -16,6 +16,7 @@ def data_method_pairs_list = []
 data_method_pairs_ch = Channel.from(data_method_pairs_list)
 
 
+
 // PROCESS 1: Obain tuples of datastes and NTC pairs
 process obtain_dataset_ntc_tuples {
 
@@ -70,5 +71,25 @@ process combine_results {
 
   """
   collect_results.R $params.result_file_name raw_result*
+  """
+}
+
+
+// PROCESS 5: Add RAM and wall clock information to results
+process append_ram_clock_info {
+  publishDir params.result_dir, mode: "copy"
+
+  when:
+  params.machine_name == "hpcc"
+
+  output:
+  file "$params.result_file_name" into collected_results_ch_appended
+
+  input:
+  file "collected_results" from collected_results_ch
+
+  """
+  qacct -j -o timbar -b $params.time | awk '/jobname|ru_maxrss|ru_wallclock/ { print $1","$2}' > temp_acct_small
+  append_ram_cpu.R temp_acct_small collected_results $params.result_file_name
   """
 }

@@ -2,7 +2,7 @@
 // data_method_pairs = [schraivogel_tap: ["schraivogel_method", "seurat_de"],
 //                     schraivogel_perturb: ["schraivogel_method", "seurat_de"],
 //                     papalexi_gene: ["schraivogel_method", "seurat_de"]]
-data_method_pairs = [schraivogel_tap: ["seurat_de"]]
+data_method_pairs = [schraivogel_tap: ["seurat_de", "schraivogel_method"]]
 
 
 // SECOND, define a matrix indicating the amount of RAM to request for each dataset-method pair

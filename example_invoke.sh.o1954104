@@ -1,0 +1,528 @@
+N E X T F L O W  ~  version 21.10.6
+Launching `main.nf` [stupefied_saha] - revision: cf9ba951d7
+[-        ] process > obtain_dataset_ntc_tuples -
+
+[-        ] process > obtain_dataset_ntc_tuples [  0%] 0 of 1
+[-        ] process > run_method                -
+[-        ] process > combine_results           -
+
+executor >  sge (1)
+[b0/cf5487] process > obtain_dataset_ntc_tuples [  0%] 0 of 1
+[-        ] process > run_method                -
+[-        ] process > combine_results           -
+
+executor >  sge (1)
+[b0/cf5487] process > obtain_dataset_ntc_tuples [100%] 1 of 1 ✔
+[-        ] process > run_method                [  0%] 0 of 6
+[-        ] process > combine_results           -
+
+executor >  sge (1)
+[b0/cf5487] process > obtain_dataset_ntc_tuples [100%] 1 of 1 ✔
+[-        ] process > run_method                [  0%] 0 of 46
+[-        ] process > combine_results           -
+
+executor >  sge (1)
+[b0/cf5487] process > obtain_dataset_ntc_tuples [100%] 1 of 1 ✔
+[-        ] process > run_method                [  0%] 0 of 60
+[-        ] process > combine_results           -
+
+executor >  sge (2)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[15/5df8c7] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (3)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[22/af4b9a] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (4)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[4a/ef2864] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (5)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[b1/85a158] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (6)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[8c/68e7d2] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (7)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[da/1fb3dc] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (8)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[da/1fb3dc] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (8)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[f5/78e08e] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (9)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[fa/722292] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (10)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[91/4ec741] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (11)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[91/4ec741] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (11)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[7a/7a3ee3] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (11)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[7a/7a3ee3] process > run_method (schraivogel_tap... [  0%] 0 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (11)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[15/5df8c7] process > run_method (schraivogel_tap... [  1%] 1 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (12)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[2f/ba0623] process > run_method (schraivogel_tap... [  1%] 1 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (12)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[22/af4b9a] process > run_method (schraivogel_tap... [  3%] 2 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (13)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[42/0594af] process > run_method (schraivogel_tap... [  3%] 2 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (13)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[42/0594af] process > run_method (schraivogel_tap... [  3%] 2 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (13)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[8c/68e7d2] process > run_method (schraivogel_tap... [  8%] 5 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (13)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[2f/ba0623] process > run_method (schraivogel_tap... [ 16%] 10 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (14)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[d5/77e564] process > run_method (schraivogel_tap... [ 16%] 10 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (15)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[c1/e08785] process > run_method (schraivogel_tap... [ 16%] 10 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (16)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[b0/d9bbf6] process > run_method (schraivogel_tap... [ 16%] 10 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (17)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[56/a9d047] process > run_method (schraivogel_tap... [ 16%] 10 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (18)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[8b/c520cd] process > run_method (schraivogel_tap... [ 20%] 12 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (19)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[98/ad6f43] process > run_method (schraivogel_tap... [ 20%] 12 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (20)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[eb/714e6e] process > run_method (schraivogel_tap... [ 20%] 12 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (21)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[cf/ad6c3e] process > run_method (schraivogel_tap... [ 20%] 12 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (22)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[8b/6df6c1] process > run_method (schraivogel_tap... [ 20%] 12 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (23)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[5f/1eda1d] process > run_method (schraivogel_tap... [ 20%] 12 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (23)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[b0/d9bbf6] process > run_method (schraivogel_tap... [ 21%] 13 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (23)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[56/a9d047] process > run_method (schraivogel_tap... [ 23%] 14 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (24)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[3f/daf97e] process > run_method (schraivogel_tap... [ 23%] 14 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (25)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[1c/177ccb] process > run_method (schraivogel_tap... [ 23%] 14 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (25)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[c1/e08785] process > run_method (schraivogel_tap... [ 26%] 16 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (26)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[e4/b37d17] process > run_method (schraivogel_tap... [ 26%] 16 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (27)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[13/9f6e0e] process > run_method (schraivogel_tap... [ 26%] 16 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (27)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[13/9f6e0e] process > run_method (schraivogel_tap... [ 26%] 16 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (27)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[3f/daf97e] process > run_method (schraivogel_tap... [ 31%] 19 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (28)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[dc/b99873] process > run_method (schraivogel_tap... [ 31%] 19 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (29)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[a6/740916] process > run_method (schraivogel_tap... [ 31%] 19 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (30)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[ee/25989d] process > run_method (schraivogel_tap... [ 31%] 19 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (30)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[e4/b37d17] process > run_method (schraivogel_tap... [ 38%] 23 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (31)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[42/94d733] process > run_method (schraivogel_tap... [ 38%] 23 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (32)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[de/00cf5c] process > run_method (schraivogel_tap... [ 38%] 23 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (33)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[03/d1d2a2] process > run_method (schraivogel_tap... [ 38%] 23 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (34)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[2b/05d125] process > run_method (schraivogel_tap... [ 38%] 23 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (34)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[ee/25989d] process > run_method (schraivogel_tap... [ 45%] 27 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (35)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[56/d626f7] process > run_method (schraivogel_tap... [ 45%] 27 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (36)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[6d/6c9278] process > run_method (schraivogel_tap... [ 45%] 27 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (37)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[ee/5ac49f] process > run_method (schraivogel_tap... [ 45%] 27 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (38)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[76/3a9eac] process > run_method (schraivogel_tap... [ 45%] 27 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (38)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[03/d1d2a2] process > run_method (schraivogel_tap... [ 50%] 30 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (39)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[c7/61b097] process > run_method (schraivogel_tap... [ 50%] 30 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (40)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[42/2bd5f4] process > run_method (schraivogel_tap... [ 50%] 30 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (41)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[e2/f5e582] process > run_method (schraivogel_tap... [ 50%] 30 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (41)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[e2/f5e582] process > run_method (schraivogel_tap... [ 50%] 30 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (41)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[ee/5ac49f] process > run_method (schraivogel_tap... [ 53%] 32 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (42)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[ba/1993c2] process > run_method (schraivogel_tap... [ 53%] 32 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (43)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[a6/0e6e13] process > run_method (schraivogel_tap... [ 53%] 32 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (43)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[42/2bd5f4] process > run_method (schraivogel_tap... [ 63%] 38 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (44)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[b5/f1513e] process > run_method (schraivogel_tap... [ 63%] 38 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (45)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[04/8ca0ce] process > run_method (schraivogel_tap... [ 63%] 38 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (46)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[32/df7347] process > run_method (schraivogel_tap... [ 63%] 38 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (47)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[80/7c7b5f] process > run_method (schraivogel_tap... [ 63%] 38 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (47)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[80/7c7b5f] process > run_method (schraivogel_tap... [ 63%] 38 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (48)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[7d/0a251d] process > run_method (schraivogel_tap... [ 63%] 38 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (49)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[3a/3c3d07] process > run_method (schraivogel_tap... [ 63%] 38 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (49)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[a6/0e6e13] process > run_method (schraivogel_tap... [ 65%] 39 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (50)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[1b/f17093] process > run_method (schraivogel_tap... [ 65%] 39 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (50)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[1b/f17093] process > run_method (schraivogel_tap... [ 65%] 39 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (50)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[b5/f1513e] process > run_method (schraivogel_tap... [ 66%] 40 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (51)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[4e/8e7002] process > run_method (schraivogel_tap... [ 66%] 40 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (51)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[32/df7347] process > run_method (schraivogel_tap... [ 68%] 41 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (52)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[68/b5c47f] process > run_method (schraivogel_tap... [ 68%] 41 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (52)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[ba/1993c2] process > run_method (schraivogel_tap... [ 73%] 44 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (53)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[10/5ae445] process > run_method (schraivogel_tap... [ 73%] 44 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (54)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[12/26871a] process > run_method (schraivogel_tap... [ 73%] 44 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (55)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[d7/12262a] process > run_method (schraivogel_tap... [ 73%] 44 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (55)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[d7/12262a] process > run_method (schraivogel_tap... [ 73%] 44 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (55)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[4e/8e7002] process > run_method (schraivogel_tap... [ 80%] 48 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (56)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[6c/0f65fb] process > run_method (schraivogel_tap... [ 80%] 48 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (57)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[df/da6ddc] process > run_method (schraivogel_tap... [ 80%] 48 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (58)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[10/21dc79] process > run_method (schraivogel_tap... [ 80%] 48 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (59)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[32/ae9a21] process > run_method (schraivogel_tap... [ 80%] 48 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (59)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[1b/f17093] process > run_method (schraivogel_tap... [ 81%] 49 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (60)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[46/ab0274] process > run_method (schraivogel_tap... [ 81%] 49 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (60)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[46/ab0274] process > run_method (schraivogel_tap... [ 81%] 49 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (60)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[d7/12262a] process > run_method (schraivogel_tap... [ 85%] 51 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (61)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[d4/ab1bbe] process > run_method (schraivogel_tap... [ 85%] 51 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (61)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[df/da6ddc] process > run_method (schraivogel_tap... [ 86%] 52 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (61)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[32/ae9a21] process > run_method (schraivogel_tap... [ 88%] 53 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (61)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[10/21dc79] process > run_method (schraivogel_tap... [ 93%] 56 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (61)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[d4/ab1bbe] process > run_method (schraivogel_tap... [ 98%] 59 of 60
+[-        ] process > combine_results                -
+
+executor >  sge (61)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[46/ab0274] process > run_method (schraivogel_tap... [100%] 60 of 60 ✔
+[-        ] process > combine_results                -
+
+executor >  sge (61)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[46/ab0274] process > run_method (schraivogel_tap... [100%] 60 of 60 ✔
+[-        ] process > combine_results                [  0%] 0 of 1
+
+executor >  sge (62)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[46/ab0274] process > run_method (schraivogel_tap... [100%] 60 of 60 ✔
+[21/9ff5e8] process > combine_results                [  0%] 0 of 1
+
+executor >  sge (62)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[46/ab0274] process > run_method (schraivogel_tap... [100%] 60 of 60 ✔
+[21/9ff5e8] process > combine_results                [  0%] 0 of 1
+
+executor >  sge (62)
+[b0/cf5487] process > obtain_dataset_ntc_tuples      [100%] 1 of 1 ✔
+[46/ab0274] process > run_method (schraivogel_tap... [100%] 60 of 60 ✔
+[21/9ff5e8] process > combine_results                [100%] 1 of 1 ✔
+Completed at: 20-Apr-2022 00:36:44
+Duration    : 7m 31s
+CPU hours   : 0.3
+Succeeded   : 62
+
+

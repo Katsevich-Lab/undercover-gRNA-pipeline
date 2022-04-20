@@ -1,0 +1,5 @@
+#! /usr/bin/awk -f
+
+awk '/li/ { print $0 }'
+
+jobname|ru_maxrss|wallclock

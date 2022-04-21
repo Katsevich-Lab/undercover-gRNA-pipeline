@@ -76,6 +76,9 @@ process combine_results {
 }
 
 
+start_time = params.time.toString()
+if (start_time.length() == 7) start_time = "0" + start_time
+
 // PROCESS 5: Add RAM and CPU information to results
 process get_ram_cpu_info {
   when:
@@ -86,9 +89,9 @@ process get_ram_cpu_info {
 
   output:
   file "ram_cpu_info" into ram_cpu_ch
-
+ 
   """
-  qacct -j -o timbar -b $params.time | awk '/jobname|ru_maxrss|ru_wallclock/ { print \$1","\$2}' > ram_cpu_info
+  qacct -j -o timbar -b $start_time | awk '/jobname|ru_maxrss|ru_wallclock/ {print \$1","\$2}' > ram_cpu_info
   """
 }
 

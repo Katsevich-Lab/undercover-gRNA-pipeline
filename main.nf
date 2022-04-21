@@ -65,6 +65,7 @@ process combine_results {
 
   output:
   file "$params.result_file_name" into collected_results_ch
+  val "flag" into flag_ch
 
   input:
   file 'raw_result' from raw_results_ch.collect()
@@ -79,6 +80,9 @@ process combine_results {
 process get_ram_cpu_info {
   when:
   params.machine_name == "hpcc"
+
+  input:
+  val flag from flag_ch
 
   output:
   file "ram_cpu_info" into ram_cpu_ch

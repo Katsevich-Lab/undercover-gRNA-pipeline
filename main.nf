@@ -75,7 +75,20 @@ process combine_results {
 }
 
 
-// PROCESS 5: Add RAM and wall clock information to results
+// PROCESS 5: Add RAM and CPU information to results
+process get_ram_cpu_info {
+  when:
+  params.machine_name == "hpcc"
+
+  output:
+  file "ram_cpu_info" into ram_cpu_ch
+
+  """
+  qacct -j -o timbar -b $params.time | awk '/jobname|ru_maxrss|ru_wallclock/ { print \$1","\$2}' > ram_cpu_info
+  """
+}
+
+
 process append_ram_clock_info {
   publishDir params.result_dir, mode: "copy"
 
@@ -87,9 +100,9 @@ process append_ram_clock_info {
 
   input:
   file "collected_results" from collected_results_ch
+  file "ram_cpu_info" from ram_cpu_ch
 
   """
-  qacct -j -o timbar -b $params.time | awk '/jobname|ru_maxrss|ru_wallclock/ { print \$1","\$2}' > temp_acct_small
-  append_ram_cpu.R temp_acct_small collected_results $params.result_file_name
+  append_ram_cpu.R ram_cpu_info collected_results $params.result_file_name
   """
 }

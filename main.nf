@@ -89,7 +89,7 @@ process append_ram_clock_info {
   file "collected_results" from collected_results_ch
 
   """
-  qacct -j -o timbar -b $params.time | awk '/jobname|ru_maxrss|ru_wallclock/ { print $1","$2}' > temp_acct_small
+  qacct -j -o timbar -b $params.time | awk '/jobname|ru_maxrss|ru_wallclock/ { print \$1","\$2}' > temp_acct_small
   append_ram_cpu.R temp_acct_small collected_results $params.result_file_name
   """
 }

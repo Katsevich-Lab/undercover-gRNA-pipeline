@@ -2,7 +2,6 @@
 // i. data_file
 // ii. method_data_pair_file
 
-
 // STEP 0: Determine the dataset-method pairs
 GroovyShell shell = new GroovyShell()
 def tools = shell.parse(new File(params.data_method_pair_file))
@@ -14,9 +13,10 @@ def data_method_pairs_list = []
     }
 }
 data_method_pairs_ch = Channel.from(data_method_pairs_list)
+data_method_pairs_ch.view()
 
 
-
+/*
 // PROCESS 1: Obain tuples of datastes and NTC pairs
 process obtain_dataset_ntc_tuples {
 
@@ -89,7 +89,7 @@ process get_ram_cpu_info {
 
   output:
   file "ram_cpu_info" into ram_cpu_ch
- 
+
   """
   qacct -j -o timbar -b $start_time | awk '/jobname|ru_maxrss|ru_wallclock/ {print \$1","\$2}' > ram_cpu_info
   """
@@ -113,3 +113,4 @@ process append_ram_clock_info {
   append_ram_cpu.R ram_cpu_info collected_results $params.result_file_name
   """
 }
+*/

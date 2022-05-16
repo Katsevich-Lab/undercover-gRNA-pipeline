@@ -1,34 +1,32 @@
-// Pipeline arguments
-// i. data_file
-// ii. method_data_pair_file
-
-// STEP 0: Determine the dataset-method pairs
+// STEP 0: Determine the dataset-method pairs; put the dataset method pairs into a map, and put the datasets into an array
 GroovyShell shell = new GroovyShell()
-def tools = shell.parse(new File(params.data_method_pair_file))
 evaluate(new File(params.data_method_pair_file))
 def data_method_pairs_list = []
+data_list_str = ""
   for (entry in data_method_pairs) {
+    data_list_str = data_list_str + " " + entry.key
     for (value in entry.value) {
       data_method_pairs_list << [entry.key, value]
     }
 }
+// Create data_ch and data_method_pairs_ch
 data_method_pairs_ch = Channel.from(data_method_pairs_list)
-data_method_pairs_ch.view()
+// Define the get_matrix_entry function
+def get_matrix_entry(data_method_ram_matrix, row_names, col_names, my_row_name, my_col_name) {
+  row_idx = row_names.findIndexOf{ it == my_row_name }
+  col_idx = col_names.findIndexOf{ it == my_col_name }
+  return data_method_ram_matrix[row_idx][col_idx]
+}
 
 
-/*
 // PROCESS 1: Obain tuples of datastes and NTC pairs
 process obtain_dataset_ntc_tuples {
+  output:
+  path "dataset_names_raw.txt" into dataset_names_raw_ch
 
-output:
-path "dataset_names_raw.txt" into dataset_names_raw_ch
-
-input:
-path data_file from params.data_file
-
-"""
-get_dataset_ntc_tuples.R $data_file
-"""
+  """
+  get_dataset_ntc_tuples.R $data_list_str
+  """
 }
 dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
@@ -37,7 +35,7 @@ dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.m
 dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 0)
 
 
-// PROCESS 3: Run methods on undercover gRNAs
+// PROCESS 2: Run methods on undercover gRNAs
 process run_method {
   clusterOptions "-l m_mem_free=${task.attempt * tools.get_matrix_entry(data_method_ram_matrix, row_names, col_names, dataset, method)}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\' "
   errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
@@ -49,16 +47,16 @@ process run_method {
   file 'raw_result.rds' into raw_results_ch
 
   input:
-  path data_file from params.data_file
   tuple val(dataset), val(ntc), val(method) from dataset_ntc_method_tuples
 
   """
-  run_method.R $data_file $dataset $ntc $method ${task.attempt * tools.get_matrix_entry(data_method_ram_matrix, row_names, col_names, dataset, method)}
+  run_method.R $dataset $ntc $method ${task.attempt * get_matrix_entry(data_method_ram_matrix, row_names, col_names, dataset, method)}
   """
 }
 
 
-// PROCESS 4: Combine results
+
+// PROCESS 3: Combine results
 params.result_file_name = "undercover_gRNA_check_results.rds"
 process combine_results {
   publishDir params.result_dir, mode: "copy"
@@ -76,10 +74,9 @@ process combine_results {
 }
 
 
+// PROCESS 4: Add RAM and CPU information to results
 start_time = params.time.toString()
 if (start_time.length() == 7) start_time = "0" + start_time
-
-// PROCESS 5: Add RAM and CPU information to results
 process get_ram_cpu_info {
   when:
   params.machine_name == "hpcc"
@@ -113,4 +110,3 @@ process append_ram_clock_info {
   append_ram_cpu.R ram_cpu_info collected_results $params.result_file_name
   """
 }
-*/

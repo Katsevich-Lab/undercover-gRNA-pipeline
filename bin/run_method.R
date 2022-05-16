@@ -1,29 +1,25 @@
 #!/usr/bin/env Rscript
 
-# Get CL args
+# Get CL args; set sceptre2 offsite dir
 args <- commandArgs(trailingOnly = TRUE)
-data_file <- args[1]
-dataset_name <- args[2]
-undercover_ntc_name <- args[3]
-method_name <- args[4]
-ram_req <- args[5]
-
-# load the data fps
-source(data_file)
+dataset_name <- args[1]
+undercover_ntc_name <- args[2]
+method_name <- args[3]
+ram_req <- args[4]
+sceptre2_offsite_dir <- paste0(.get_config_path("LOCAL_SCEPTRE2_DATA_DIR"), "data/")
 
 # Load packages
 library(ondisc)
 library(lowmoi)
 
 # read response matrix and gRNA expression matrix
-if (!dataset_name %in% names(data_list)) {
-  stop(paste0("The dataset `", dataset_name, "` is not present within the `data_list`. Ensure your `data_file.R` and `data_method_pair_file.groovy` files match and try again."))
-}
-curr_fps <- data_list[[dataset_name]]
-response_odm <- read_odm(odm_fp = curr_fps[["response_odm_fp"]],
-                     metadata_fp = curr_fps[["response_metadata_fp"]])
-gRNA_odm <- read_odm(odm_fp = curr_fps[["gRNA_odm_fp"]],
-                     metadata_fp = curr_fps[["gRNA_metadata_fp"]])
+modality_fp <- paste0(sceptre2_offsite_dir, dataset_name)
+data_dir <- sub('/[^/]*$', '', modality_fp)
+gRNA_fp <- paste0(data_dir, "/grna")
+response_odm <- read_odm(odm_fp = paste0(modality_fp, "/matrix.odm"),
+                         metadata_fp = paste0(modality_fp, "/metadata_qc.rds"))
+gRNA_odm <- read_odm(odm_fp = paste0(gRNA_fp, "/matrix.odm"),
+                     metadata_fp = paste0(gRNA_fp, "/metadata_qc.rds"))
 
 # perform the label swap
 gRNA_feature_covariates <- gRNA_odm |> get_feature_covariates()

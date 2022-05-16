@@ -2,16 +2,16 @@
 
 # Get CL args
 args <- commandArgs(trailingOnly = TRUE)
-data_file <- args[1]
-
-source(data_file)
+sceptre2_offsite_dir <- paste0(.get_config_path("LOCAL_SCEPTRE2_DATA_DIR"), "data/")
 library(ondisc)
 
 out <- NULL
-for (dataset_name in names(data_list)) {
-  gRNA_metadata <- data_list[[dataset_name]][["gRNA_metadata_fp"]]
-  x <- readRDS(gRNA_metadata)
-  gRNA_feature_covariates <- x[["feature_covariates"]]
+for (dataset_modality_name in args) {
+  modality_fp <- paste0(sceptre2_offsite_dir, dataset_modality_name)
+  data_dir <- sub('/[^/]*$', '', modality_fp)
+  grna_metadata_fp <- paste0(data_dir, "/grna/metadata_qc.rds")
+  gRNA_metadata <- readRDS(grna_metadata_fp)
+  gRNA_feature_covariates <- gRNA_metadata[["feature_covariates"]]
 
   # some basic correctness checks
   if (!("target_type" %in% colnames(gRNA_feature_covariates))) {
@@ -25,7 +25,7 @@ for (dataset_name in names(data_list)) {
   ntc_names <- gRNA_feature_covariates |>
     dplyr::filter(target_type == "non-targeting") |>
     row.names()
-  out <- c(out, paste(dataset_name, ntc_names))
+  out <- c(out, paste(dataset_modality_name, ntc_names))
 }
 
 # write to disk

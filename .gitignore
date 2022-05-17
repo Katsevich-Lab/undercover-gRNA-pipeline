@@ -2,3 +2,5 @@
 .Rhistory
 work
 undercover_gRNA_check_results.rds
+.DS_Store
+bin/raw_result.rds

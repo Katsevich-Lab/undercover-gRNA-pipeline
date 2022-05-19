@@ -8,13 +8,10 @@ sceptre2_offsite_dir <- paste0(.get_config_path("LOCAL_SCEPTRE2_DATA_DIR"), "dat
 library(ondisc)
 
 out <- NULL
-for (dataset_modality_name in datasets) {
-  modality_fp <- paste0(sceptre2_offsite_dir, dataset_modality_name)
-  data_dir <- sub('/[^/]*$', '', modality_fp)
-  grna_metadata_fp <- paste0(data_dir, "/grna/metadata_qc.rds")
-  gRNA_metadata <- readRDS(grna_metadata_fp)
-  gRNA_feature_covariates <- gRNA_metadata[["feature_covariates"]]
-
+for (dataset_name in datasets) {
+  grna_dataset_name <- paste0(sub('/[^/]*$', '', dataset_name), "/grna")
+  gRNA_feature_covariates <- load_dataset_modality(grna_dataset_name) |> get_feature_covariates()
+ 
   # some basic correctness checks
   if (!("target_type" %in% colnames(gRNA_feature_covariates))) {
     stop("The column `target_type` must be present in the feature covariates data frame of the gRNA ondisc matrix.")
@@ -28,7 +25,7 @@ for (dataset_modality_name in datasets) {
     dplyr::filter(target_type == "non-targeting") |>
     row.names()
   if (one_ntc) ntc_names <- ntc_names[1]
-  out <- c(out, paste(dataset_modality_name, ntc_names))
+  out <- c(out, paste(dataset_name, ntc_names))
 }
 
 # write to disk

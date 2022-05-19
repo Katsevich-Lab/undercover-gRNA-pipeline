@@ -6,20 +6,15 @@ dataset_name <- args[1]
 undercover_ntc_name <- args[2]
 method_name <- args[3]
 ram_req <- args[4]
-sceptre2_offsite_dir <- paste0(.get_config_path("LOCAL_SCEPTRE2_DATA_DIR"), "data/")
 
 # Load packages
 library(ondisc)
 library(lowmoi)
 
 # read response matrix and gRNA expression matrix
-modality_fp <- paste0(sceptre2_offsite_dir, dataset_name)
-data_dir <- sub('/[^/]*$', '', modality_fp)
-gRNA_fp <- paste0(data_dir, "/grna")
-response_odm <- read_odm(odm_fp = paste0(modality_fp, "/matrix.odm"),
-                         metadata_fp = paste0(modality_fp, "/metadata_qc.rds"))
-gRNA_odm <- read_odm(odm_fp = paste0(gRNA_fp, "/matrix.odm"),
-                     metadata_fp = paste0(gRNA_fp, "/metadata_qc.rds"))
+response_odm <- load_dataset_modality(dataset_name)
+grna_dataset_name <- paste0(sub('/[^/]*$', '', dataset_name), "/grna")
+gRNA_odm <- load_dataset_modality(grna_dataset_name)
 
 # perform the label swap
 gRNA_feature_covariates <- gRNA_odm |> get_feature_covariates()

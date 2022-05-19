@@ -1,3 +1,6 @@
+params.one_neg_control = "FALSE"
+params.max_retries = 1
+
 // STEP 0: Determine the dataset-method pairs; put the dataset method pairs into a map, and put the datasets into an array
 GroovyShell shell = new GroovyShell()
 evaluate(new File(params.data_method_pair_file))
@@ -25,9 +28,10 @@ process obtain_dataset_ntc_tuples {
   path "dataset_names_raw.txt" into dataset_names_raw_ch
 
   """
-  get_dataset_ntc_tuples.R $data_list_str
+  get_dataset_ntc_tuples.R ${params.one_neg_control} $data_list_str
   """
 }
+
 dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
 
@@ -39,7 +43,7 @@ dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 
 process run_method {
   clusterOptions "-l m_mem_free=${task.attempt * get_matrix_entry(data_method_ram_matrix, row_names, col_names, dataset, method)}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\' "
   errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
-  maxRetries 1
+  maxRetries params.max_retries
 
   tag "$dataset+$method+$ntc"
 

@@ -2,11 +2,13 @@
 
 # Get CL args
 args <- commandArgs(trailingOnly = TRUE)
+one_ntc <- as.logical(args[1])
+datasets <- args[seq(2, length(args))]
 sceptre2_offsite_dir <- paste0(.get_config_path("LOCAL_SCEPTRE2_DATA_DIR"), "data/")
 library(ondisc)
 
 out <- NULL
-for (dataset_modality_name in args) {
+for (dataset_modality_name in datasets) {
   modality_fp <- paste0(sceptre2_offsite_dir, dataset_modality_name)
   data_dir <- sub('/[^/]*$', '', modality_fp)
   grna_metadata_fp <- paste0(data_dir, "/grna/metadata_qc.rds")
@@ -25,6 +27,7 @@ for (dataset_modality_name in args) {
   ntc_names <- gRNA_feature_covariates |>
     dplyr::filter(target_type == "non-targeting") |>
     row.names()
+  if (one_ntc) ntc_names <- ntc_names[1]
   out <- c(out, paste(dataset_modality_name, ntc_names))
 }
 

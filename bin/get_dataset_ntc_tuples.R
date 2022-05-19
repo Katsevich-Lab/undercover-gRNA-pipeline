@@ -10,7 +10,7 @@ library(ondisc)
 out <- NULL
 for (dataset_name in datasets) {
   grna_dataset_name <- paste0(sub('/[^/]*$', '', dataset_name), "/grna")
-  gRNA_feature_covariates <- load_dataset_modality(grna_dataset_name) |> get_feature_covariates()
+  gRNA_feature_covariates <- lowmoi::load_dataset_modality(grna_dataset_name) |> get_feature_covariates()
  
   # some basic correctness checks
   if (!("target_type" %in% colnames(gRNA_feature_covariates))) {

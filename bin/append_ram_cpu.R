@@ -14,11 +14,11 @@ ram_idxs <- seq(from = 3, by = 3, to = nrow(tbl))
 job_names <- tbl$value[jobname_idxs]
 clock_times <- as.numeric(tbl$value[clock_idxs])
 max_rams <- as.numeric(tbl$value[ram_idxs]) * 1e-6
-to_join_df <- data.frame(job_name = job_names, clock_time = clock_times, max_ram = max_rams) 
+to_join_df <- data.frame(job_name = job_names, clock_time = clock_times, max_ram = max_rams)
 to_join_df <- to_join_df[grepl(pattern = "^nf-run_method_", x = to_join_df$job_name),]
 
 # process the job_names further
-jobs_df <- to_join_df$job_name %>% 
+jobs_df <- to_join_df$job_name %>%
    gsub(pattern = "nf-run_method_\\(|)", replacement = "", x = .) %>%
    strsplit(x = ., split = "\\+") %>%
    lapply(X = ., FUN = function(i) matrix(i, ncol = 3, nrow = 1)) %>%
@@ -31,6 +31,8 @@ to_join_df <- to_join_df %>% dplyr::mutate(jobs_df, job_name = NULL,
 
 # join with the result df
 result_df <- readRDS(result_df_fp)
+result_df$dataset <- factor(gsub(pattern = "/", replacement = "_", x = result_df$dataset, fixed = TRUE))
+
 new_result_df <- dplyr::left_join(x = result_df, y = to_join_df,
                                   by = c("dataset", "method", "undercover_gRNA"))
 # save

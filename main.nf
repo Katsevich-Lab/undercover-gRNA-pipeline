@@ -43,7 +43,7 @@ dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 
 
 // PROCESS 2: Run methods on undercover gRNAs
 process run_method {
-  clusterOptions "-l m_mem_free=${task.attempt * get_matrix_entry(data_method_ram_matrix, row_names, col_names, dataset, method)}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\' -q short.q"
+  clusterOptions "-q short.q -l m_mem_free=${task.attempt * get_matrix_entry(data_method_ram_matrix, row_names, col_names, dataset, method)}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
   errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
   maxRetries params.max_retries
 
@@ -64,7 +64,7 @@ process run_method {
 // PROCESS 3: Combine results
 params.result_file_name = "undercover_gRNA_check_results.rds"
 process combine_results {
-  clusterOptions "-o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\' -q short.q"
+  clusterOptions "-q short.q -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
   publishDir params.result_dir, mode: "copy"
 
   output:
@@ -84,7 +84,7 @@ process combine_results {
 start_time = params.time.toString()
 if (start_time.length() == 7) start_time = "0" + start_time
 process get_ram_cpu_info {
-  clusterOptions "-o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\' -q short.q"
+  clusterOptions "-q short.q -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
 
   when:
   params.machine_name == "hpcc"
@@ -103,7 +103,7 @@ process get_ram_cpu_info {
 
 process append_ram_clock_info {
   publishDir params.result_dir, mode: "copy"
-  clusterOptions "-o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\' -q short.q"
+  clusterOptions "-q short.q -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
 
   when:
   params.machine_name == "hpcc"

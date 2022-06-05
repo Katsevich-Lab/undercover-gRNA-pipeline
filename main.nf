@@ -20,6 +20,11 @@ def get_matrix_entry(data_method_ram_matrix, row_names, col_names, my_row_name, 
   col_idx = col_names.findIndexOf{ it == my_col_name }
   return data_method_ram_matrix[row_idx][col_idx]
 }
+// Define the get_vector_entry function
+def get_vector_entry(vector, col_names, my_col_name) {
+  idx = col_names.findIndexOf{ it == my_col_name }
+  return vector[idx]
+}
 
 
 // PROCESS 1: Obain tuples of datastes and NTC pairs
@@ -37,15 +42,24 @@ process obtain_dataset_ntc_tuples {
 dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
 
-// STEP 2: Combine the methods and NTCs, then filter
-dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 0)
+// STEP 2: Combine the methods and NTCs, resulting in dataset-NTC-method tuples.
+// Additionally, append to each tuple: (i) the amount of RAM requested, (ii) the queue (short or long), and (iii) any additional arguments.
+dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 0).map{
+  [it[0], // dataset
+  it[1], // NTC
+  it[2], // method
+  get_matrix_entry(data_method_queue_matrix, row_names, col_names, it[0], it[2]), // queue
+  get_matrix_entry(data_method_ram_matrix, row_names, col_names, it[0], it[2]), // RAM
+  get_vector_entry(optional_args, col_names, it[2])] // optional args
+}
 
 
 // PROCESS 2: Run methods on undercover gRNAs
 process run_method {
-  clusterOptions "-q ${get_matrix_entry(data_method_queue_matrix, row_names, col_names, dataset, method)} -l m_mem_free=${task.attempt * get_matrix_entry(data_method_ram_matrix, row_names, col_names, dataset, method)}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
+  clusterOptions "-q $queue -l m_mem_free=${ram}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
   errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
   maxRetries params.max_retries
+  echo true
 
   tag "$dataset+$method+$ntc"
 
@@ -53,10 +67,10 @@ process run_method {
   file 'raw_result.rds' into raw_results_ch
 
   input:
-  tuple val(dataset), val(ntc), val(method) from dataset_ntc_method_tuples
+  tuple val(dataset), val(ntc), val(method), val(queue), val(ram), val(opt_args) from dataset_ntc_method_tuples
 
   """
-  run_method.R $dataset $ntc $method ${task.attempt * get_matrix_entry(data_method_ram_matrix, row_names, col_names, dataset, method)}
+  run_method.R $dataset $ntc $method $opt_args
   """
 }
 

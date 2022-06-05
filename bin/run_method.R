@@ -5,7 +5,11 @@ args <- commandArgs(trailingOnly = TRUE)
 dataset_name <- args[1]
 undercover_ntc_name <- args[2]
 method_name <- args[3]
-ram_req <- args[4]
+if (length(args) >= 4) {
+  optional_args <- args[seq(4, length(args))]
+} else {
+  optional_args <- NULL
+}
 
 # Load packages
 library(ondisc)
@@ -37,9 +41,20 @@ if (!all(c("response_odm", "gRNA_odm", "response_gRNA_group_pairs") %in% formal_
   stop(paste0("The formal arguments of `", method_name, "` must include `response_odm`, `gRNA_odm`, and `response_gRNA_group_pairs`."))
 }
 
-result_df <- do.call(what = method_name, args = list(response_odm = response_odm,
-                                                     gRNA_odm = gRNA_odm_swapped,
-                                                     response_gRNA_group_pairs = response_gRNA_group_pairs))
+to_pass_list <- list(response_odm = response_odm, gRNA_odm = gRNA_odm_swapped, response_gRNA_group_pairs = response_gRNA_group_pairs)
+if (!is.null(optional_args)) { # if there are optional arguments specified, add them to the list
+  values_vect <- NULL
+  names_vect <- NULL
+  for (str in optional_args) {
+    str_split <- strsplit(x = str, split = "=", fixed = TRUE)[[1]]
+    values_vect <- c(values_vect, str_split[2])
+    names_vect <- c(names_vect, str_split[1])
+  }
+  to_append_list <- purrr::set_names(as.list(values_vect), names_vect)
+  to_pass_list <- c(to_pass_list, to_append_list)
+}
+
+result_df <- do.call(what = method_name, args = to_pass_list)
 
 if (!identical(sort(colnames(result_df)), c("gRNA_group", "p_value", "response_id"))) {
   stop(paste0("The output of `", method_name, "` must be a data frame with columns `response_id`, `gRNA_group`, and `p_value`."))
@@ -47,8 +62,8 @@ if (!identical(sort(colnames(result_df)), c("gRNA_group", "p_value", "response_i
 
 # add columns indicating the undercover gRNA, dataset name, and method name
 out <- result_df |>
-  dplyr::mutate(undercover_gRNA = gRNA_group, gRNA_group = NULL, dataset = dataset_name, method = method_name, ram_req = ram_req) |>
-  dplyr::mutate_at(.vars = c("response_id", "undercover_gRNA", "dataset", "method", "ram_req"), .funs = factor)
+  dplyr::mutate(undercover_gRNA = gRNA_group, gRNA_group = NULL, dataset = dataset_name, method = method_name) |>
+  dplyr::mutate_at(.vars = c("response_id", "undercover_gRNA", "dataset", "method"), .funs = factor)
 
 # save result
 saveRDS(object = out, file = "raw_result.rds")

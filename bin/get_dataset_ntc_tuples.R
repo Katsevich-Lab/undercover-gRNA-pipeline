@@ -3,13 +3,14 @@
 # Get CL args
 args <- commandArgs(trailingOnly = TRUE)
 one_ntc <- as.logical(args[1])
-datasets <- args[seq(2, length(args))]
+grna_modality <- args[2]
+datasets <- args[seq(3, length(args))]
 sceptre2_offsite_dir <- paste0(.get_config_path("LOCAL_SCEPTRE2_DATA_DIR"), "data/")
 library(ondisc)
 
 out <- NULL
 for (dataset_name in datasets) {
-  grna_dataset_name <- paste0(sub('/[^/]*$', '', dataset_name), "/grna")
+  grna_dataset_name <- lowmoi::get_gRNA_dataset_name(dataset_name, grna_modality)
   gRNA_feature_covariates <- lowmoi::load_dataset_modality(grna_dataset_name) |> get_feature_covariates()
  
   # some basic correctness checks

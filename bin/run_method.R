@@ -5,8 +5,9 @@ args <- commandArgs(trailingOnly = TRUE)
 dataset_name <- args[1]
 undercover_ntc_name <- args[2]
 method_name <- args[3]
-if (length(args) >= 4) {
-  optional_args <- args[seq(4, length(args))]
+grna_modality <- args[4]
+if (length(args) >= 5) {
+  optional_args <- args[seq(5, length(args))]
 } else {
   optional_args <- NULL
 }
@@ -17,7 +18,7 @@ library(lowmoi)
 
 # read response matrix and gRNA expression matrix
 response_odm <- load_dataset_modality(dataset_name)
-grna_dataset_name <- paste0(sub('/[^/]*$', '', dataset_name), "/grna")
+grna_dataset_name <- get_gRNA_dataset_name(dataset_name, grna_modality)
 gRNA_odm <- load_dataset_modality(grna_dataset_name)
 
 # perform the label swap

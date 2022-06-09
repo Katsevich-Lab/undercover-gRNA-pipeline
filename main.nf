@@ -1,5 +1,6 @@
 params.one_neg_control = "FALSE"
 params.max_retries = 1
+params.grna_modality = "assignment" // ("assignment" vs "expression")
 
 // STEP 0: Determine the dataset-method pairs; put the dataset method pairs into a map, and put the datasets into an array
 GroovyShell shell = new GroovyShell()
@@ -35,10 +36,9 @@ process obtain_dataset_ntc_tuples {
   path "dataset_names_raw.txt" into dataset_names_raw_ch
 
   """
-  get_dataset_ntc_tuples.R ${params.one_neg_control} $data_list_str
+  get_dataset_ntc_tuples.R ${params.one_neg_control} ${params.grna_modality} $data_list_str
   """
 }
-
 dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
 
@@ -59,7 +59,6 @@ process run_method {
   clusterOptions "-q $queue -l m_mem_free=${ram}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
   errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
   maxRetries params.max_retries
-  echo true
 
   tag "$dataset+$method+$ntc"
 
@@ -70,7 +69,7 @@ process run_method {
   tuple val(dataset), val(ntc), val(method), val(queue), val(ram), val(opt_args) from dataset_ntc_method_tuples
 
   """
-  run_method.R $dataset $ntc $method $opt_args
+  run_method.R $dataset $ntc $method ${params.grna_modality} $opt_args
   """
 }
 

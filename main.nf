@@ -53,11 +53,13 @@ dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 
   get_vector_entry(optional_args, col_names, it[2])] // optional args
 }
 
+dataset_ntc_method_tuples.view()
 
+/*
 // PROCESS 2: Run methods on undercover gRNAs
 process run_method {
   clusterOptions "-q $queue -l m_mem_free=${ram}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
-  errorStrategy { task.exitStatus == 137 ? 'retry' : 'ignore' }
+  errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
   maxRetries params.max_retries
 
   tag "$dataset+$method+$ntc"
@@ -132,3 +134,4 @@ process append_ram_clock_info {
   append_ram_cpu.R ram_cpu_info collected_results $params.result_file_name
   """
 }
+*/

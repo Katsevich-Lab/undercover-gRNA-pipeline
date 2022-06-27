@@ -3,7 +3,7 @@
 # Get CL args; set sceptre2 offsite dir
 args <- commandArgs(trailingOnly = TRUE)
 dataset_name <- args[1]
-undercover_ntc_name <- args[2]
+undercover_ntc_name_in <- args[2]
 method_name <- args[3]
 grna_modality <- args[4]
 if (length(args) >= 5) {
@@ -22,15 +22,21 @@ grna_dataset_name <- get_gRNA_dataset_name(dataset_name, grna_modality)
 gRNA_odm <- load_dataset_modality(grna_dataset_name)
 
 # perform the label swap
+undercover_ntc_name <- strsplit(x = undercover_ntc_name_in, split = "+", fixed = TRUE) |>
+  unlist()
 gRNA_feature_covariates <- gRNA_odm |> get_feature_covariates()
 tab_target_types <- sort(table(gRNA_feature_covariates$target_type), decreasing = TRUE)
 new_label <- (tab_target_types[names(tab_target_types) != "non-targeting"] |> names())[1]
 gRNA_feature_covariates[undercover_ntc_name, "target_type"] <- new_label
+gRNA_feature_covariates[undercover_ntc_name, "target"] <- "undercover"
 gRNA_odm_swapped <- gRNA_odm |> mutate_feature_covariates(target_type = gRNA_feature_covariates$target_type)
 
 # obtain the (response, gRNA) pairs to analyze
 response_gRNA_group_pairs <- data.frame(response_id = get_feature_ids(response_odm),
                                         gRNA_group = undercover_ntc_name)
+
+#response_gRNA_group_pairs <- data.frame(response_id = get_feature_ids(response_odm),
+#                                        gRNA_group = undercover_ntc_name_in)
 
 # verify that "method" is a function within the lowmoi package
 if (!exists(x = method_name, where = "package:lowmoi", mode = "function")) {

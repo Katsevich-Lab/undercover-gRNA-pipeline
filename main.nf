@@ -1,6 +1,9 @@
-params.one_neg_control = "FALSE"
-params.max_retries = 1
+params.max_retries = 1 // max number of retries upon process failure
 params.grna_modality = "assignment" // ("assignment" vs "expression")
+params.group_size = 3 // number of gRNAs per gRNA group
+params.is_group_size_frac = "false" // is "group_size" a fraction? If so, group_size = group_size * (n NTCs); else group_size = group_size
+params.partition_count = 1 // number of NTC partitions (or "configurations") to iterate over
+params.is_partition_count_frac = "true" // is "partition_count" a fraction? If so, partition_count = group_size = group_size  * (n NTCs); else, partition_count = partition_count
 
 // STEP 0: Determine the dataset-method pairs; put the dataset method pairs into a map, and put the datasets into an array
 GroovyShell shell = new GroovyShell()
@@ -30,17 +33,24 @@ def get_vector_entry(vector, col_names, my_col_name) {
 
 // PROCESS 1: Obain tuples of datastes and NTC pairs
 process obtain_dataset_ntc_tuples {
+  debug true
   clusterOptions "-q short.q -l m_mem_free=2G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
 
-  output:
-  path "dataset_names_raw.txt" into dataset_names_raw_ch
+  //output:
+  //path "dataset_names_raw.txt" into dataset_names_raw_ch
+
+  //"""
+  //get_dataset_ntc_tuples.R ${params.grna_modality} ${params.group_size} ${params.is_group_size_frac} ${params.partition_count} ${params.is_partition_count_frac} $data_list_str
+  //"""
 
   """
-  get_dataset_ntc_tuples.R ${params.one_neg_control} ${params.grna_modality} $data_list_str
+  echo ${params.grna_modality} ${params.group_size} ${params.is_group_size_frac} ${params.partition_count} ${params.is_partition_count_frac} $data_list_str
   """
 }
-dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
+
+/*
+dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
 // STEP 2: Combine the methods and NTCs, resulting in dataset-NTC-method tuples.
 // Additionally, append to each tuple: (i) the amount of RAM requested, (ii) the queue (short or long), and (iii) any additional arguments.
@@ -53,25 +63,28 @@ dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 
   get_vector_entry(optional_args, col_names, it[2])] // optional args
 }
 
-dataset_ntc_method_tuples.view()
 
-/*
 // PROCESS 2: Run methods on undercover gRNAs
 process run_method {
   clusterOptions "-q $queue -l m_mem_free=${ram}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
   errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
   maxRetries params.max_retries
+  debug true
 
   tag "$dataset+$method+$ntc"
 
-  output:
-  file 'raw_result.rds' into raw_results_ch
+  //output:
+  //file 'raw_result.rds' into raw_results_ch
 
   input:
   tuple val(dataset), val(ntc), val(method), val(queue), val(ram), val(opt_args) from dataset_ntc_method_tuples
 
+  //"""
+  //run_method.R $dataset $ntc $method ${params.grna_modality} $opt_args
+  //"""
+
   """
-  run_method.R $dataset $ntc $method ${params.grna_modality} $opt_args
+  echo $dataset $ntc $method ${params.grna_modality} $opt_args
   """
 }
 

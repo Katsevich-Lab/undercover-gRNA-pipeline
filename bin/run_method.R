@@ -22,21 +22,15 @@ grna_dataset_name <- get_gRNA_dataset_name(dataset_name, grna_modality)
 gRNA_odm <- load_dataset_modality(grna_dataset_name)
 
 # perform the label swap
-undercover_ntc_name <- strsplit(x = undercover_ntc_name_in, split = "+", fixed = TRUE) |>
+undercover_ntc_name <- strsplit(x = undercover_ntc_name_in, split = ",", fixed = TRUE) |>
   unlist()
 gRNA_feature_covariates <- gRNA_odm |> get_feature_covariates()
-tab_target_types <- sort(table(gRNA_feature_covariates$target_type), decreasing = TRUE)
-new_label <- (tab_target_types[names(tab_target_types) != "non-targeting"] |> names())[1]
-gRNA_feature_covariates[undercover_ntc_name, "target_type"] <- new_label
 gRNA_feature_covariates[undercover_ntc_name, "target"] <- "undercover"
-gRNA_odm_swapped <- gRNA_odm |> mutate_feature_covariates(target_type = gRNA_feature_covariates$target_type)
+gRNA_odm_swapped <- gRNA_odm |> mutate_feature_covariates(target = gRNA_feature_covariates$target)
 
 # obtain the (response, gRNA) pairs to analyze
 response_gRNA_group_pairs <- data.frame(response_id = get_feature_ids(response_odm),
-                                        gRNA_group = undercover_ntc_name)
-
-#response_gRNA_group_pairs <- data.frame(response_id = get_feature_ids(response_odm),
-#                                        gRNA_group = undercover_ntc_name_in)
+                                        gRNA_group = "undercover")
 
 # verify that "method" is a function within the lowmoi package
 if (!exists(x = method_name, where = "package:lowmoi", mode = "function")) {
@@ -69,7 +63,7 @@ if (!identical(sort(colnames(result_df)), c("gRNA_group", "p_value", "response_i
 
 # add columns indicating the undercover gRNA, dataset name, and method name
 out <- result_df |>
-  dplyr::mutate(undercover_gRNA = gRNA_group, gRNA_group = NULL, dataset = dataset_name, method = method_name) |>
+  dplyr::mutate(undercover_gRNA = undercover_ntc_name_in, gRNA_group = NULL, dataset = dataset_name, method = method_name) |>
   dplyr::mutate_at(.vars = c("response_id", "undercover_gRNA", "dataset", "method"), .funs = factor)
 
 # save result

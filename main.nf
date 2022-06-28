@@ -36,21 +36,15 @@ process obtain_dataset_ntc_tuples {
   debug true
   clusterOptions "-q short.q -l m_mem_free=2G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
 
-  //output:
-  //path "dataset_names_raw.txt" into dataset_names_raw_ch
-
-  //"""
-  //get_dataset_ntc_tuples.R ${params.grna_modality} ${params.group_size} ${params.is_group_size_frac} ${params.partition_count} ${params.is_partition_count_frac} $data_list_str
-  //"""
+  output:
+  path "dataset_names_raw.txt" into dataset_names_raw_ch
 
   """
-  echo ${params.grna_modality} ${params.group_size} ${params.is_group_size_frac} ${params.partition_count} ${params.is_partition_count_frac} $data_list_str
+  get_dataset_ntc_tuples.R ${params.grna_modality} ${params.group_size} ${params.is_group_size_frac} ${params.partition_count} ${params.is_partition_count_frac} $data_list_str
   """
 }
-
-
-/*
 dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
+
 
 // STEP 2: Combine the methods and NTCs, resulting in dataset-NTC-method tuples.
 // Additionally, append to each tuple: (i) the amount of RAM requested, (ii) the queue (short or long), and (iii) any additional arguments.
@@ -89,6 +83,7 @@ process run_method {
 }
 
 
+/*
 // PROCESS 3: Combine results
 params.result_file_name = "undercover_gRNA_check_results.rds"
 process combine_results {

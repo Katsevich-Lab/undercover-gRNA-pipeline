@@ -18,17 +18,14 @@ for (dataset_name in datasets) {
   grna_dataset_name <- lowmoi::get_gRNA_dataset_name(dataset_name, grna_modality)
   gRNA_feature_covariates <- lowmoi::load_dataset_modality(grna_dataset_name) |> get_feature_covariates()
  
-  # some basic correctness checks
-  if (!("target_type" %in% colnames(gRNA_feature_covariates))) {
-    stop("The column `target_type` must be present in the feature covariates data frame of the gRNA ondisc matrix.")
-  }
-  if (!("non-targeting" %in% gRNA_feature_covariates$target_type)) {
-    stop("The `target_type` column of the gRNA feature covariates data frame must have at least one entry `non-targeting`.")
-  }
+  # some basic correctness checks: check for the presence of column "target" and ensure that "non-targeting" is an entry of this column.
   if (!("target" %in% colnames(gRNA_feature_covariates))) {
     stop("The column `target` must be present in the feature covariates data frame of the gRNA ondisc matrix.")
   }
-  
+  if (!("non-targeting" %in% gRNA_feature_covariates$target)) {
+    stop("The `target` column of the gRNA feature covariates data frame must have at least one entry `non-targeting`.")
+  }
+
   # get NTC names and NTC count
   ntc_names <- gRNA_feature_covariates |>
     dplyr::filter(target_type == "non-targeting") |>
@@ -40,7 +37,7 @@ for (dataset_name in datasets) {
   partition_count <- if (is_partition_count_frac) floor(partition_count_in * n_ntcs) else partition_count_in
   
   # get the undercover groups
-  my_grps <- get_undercover_groups(ntc_names, group_size, partition_count)
+  my_grps <- lowmoi::get_undercover_groups(ntc_names, group_size, partition_count)
   
   # append to out
   out <- c(out, paste(dataset_name, my_grps))

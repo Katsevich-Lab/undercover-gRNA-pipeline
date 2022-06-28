@@ -4,8 +4,6 @@
 data_method_pairs = ["frangieh/co_culture/gene": ["schraivogel_method", "seurat_de", "mimosca", "weissman_method"],
                      "frangieh/control/gene": ["schraivogel_method", "seurat_de", "mimosca", "weissman_method"],
                      "frangieh/ifn_gamma/gene": ["schraivogel_method", "seurat_de", "mimosca", "weissman_method"],
-                     "liscovitch/experiment_big/chromatin": ["liscovitch_method"],
-                     "liscovitch/experiment_small/chromatin": ["liscovitch_method"],
                      "papalexi/eccite_screen/gene": ["schraivogel_method", "seurat_de", "mimosca", "weissman_method"],
                      "papalexi/eccite_screen/protein": ["schraivogel_method", "seurat_de", "mimosca", "weissman_method"],
                      "schraivogel/enhancer_screen_chr11/gene": ["schraivogel_method", "seurat_de", "mimosca", "weissman_method"],

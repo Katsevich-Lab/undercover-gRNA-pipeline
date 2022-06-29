@@ -22,11 +22,14 @@ grna_dataset_name <- get_gRNA_dataset_name(dataset_name, grna_modality)
 gRNA_odm <- load_dataset_modality(grna_dataset_name)
 
 # perform the label swap
-undercover_ntc_name <- strsplit(x = undercover_ntc_name_in, split = ",", fixed = TRUE) |>
-  unlist()
+undercover_ntc_name <- strsplit(x = undercover_ntc_name_in, split = ",", fixed = TRUE) |> unlist()
 gRNA_feature_covariates <- gRNA_odm |> get_feature_covariates()
 gRNA_feature_covariates[undercover_ntc_name, "target"] <- "undercover"
+if (!("non-targeting" %in% gRNA_feature_covariates$target)) {
+  stop("After performing label swap, `non-targeting` is no longer string in the `target` column.")
+}
 gRNA_odm_swapped <- gRNA_odm |> mutate_feature_covariates(target = gRNA_feature_covariates$target)
+
 
 # obtain the (response, gRNA) pairs to analyze
 response_gRNA_group_pairs <- data.frame(response_id = get_feature_ids(response_odm),

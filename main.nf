@@ -67,23 +67,19 @@ process run_method {
 
   tag "$dataset+$method+$ntc"
 
-  //output:
-  //file 'raw_result.rds' into raw_results_ch
+  output:
+  file 'raw_result.rds' into raw_results_ch
 
   input:
   tuple val(dataset), val(ntc), val(method), val(queue), val(ram), val(opt_args) from dataset_ntc_method_tuples
 
-  //"""
-  //run_method.R $dataset $ntc $method ${params.grna_modality} $opt_args
-  //"""
-
   """
-  echo $dataset $ntc $method ${params.grna_modality} $opt_args
+  run_method.R $dataset $ntc $method ${params.grna_modality} $opt_args
   """
 }
 
 
-/*
+
 // PROCESS 3: Combine results
 params.result_file_name = "undercover_gRNA_check_results.rds"
 process combine_results {
@@ -142,4 +138,3 @@ process append_ram_clock_info {
   append_ram_cpu.R ram_cpu_info collected_results $params.result_file_name
   """
 }
-*/

@@ -16,24 +16,24 @@ if (length(args) >= 5) {
 library(ondisc)
 library(lowmoi)
 
-# read response matrix and gRNA expression matrix
+# read response matrix and grna expression matrix
 response_odm <- load_dataset_modality(dataset_name)
-grna_dataset_name <- get_gRNA_dataset_name(dataset_name, grna_modality)
-gRNA_odm <- load_dataset_modality(grna_dataset_name)
+grna_dataset_name <- get_grna_dataset_name(dataset_name, grna_modality)
+grna_odm <- load_dataset_modality(grna_dataset_name)
 
 # perform the label swap
 undercover_ntc_name <- strsplit(x = undercover_ntc_name_in, split = ",", fixed = TRUE) |> unlist()
-gRNA_feature_covariates <- gRNA_odm |> get_feature_covariates()
-gRNA_feature_covariates[undercover_ntc_name, "target"] <- "undercover"
-if (!("non-targeting" %in% gRNA_feature_covariates$target)) {
+grna_feature_covariates <- grna_odm |> get_feature_covariates()
+grna_feature_covariates[undercover_ntc_name, "target"] <- "undercover"
+if (!("non-targeting" %in% grna_feature_covariates$target)) {
   stop("After performing label swap, `non-targeting` is no longer string in the `target` column.")
 }
-gRNA_odm_swapped <- gRNA_odm |> mutate_feature_covariates(target = gRNA_feature_covariates$target)
+grna_odm_swapped <- grna_odm |> mutate_feature_covariates(target = grna_feature_covariates$target)
 
 
-# obtain the (response, gRNA) pairs to analyze
-response_gRNA_group_pairs <- data.frame(response_id = get_feature_ids(response_odm),
-                                        gRNA_group = "undercover")
+# obtain the (response, grna) pairs to analyze
+response_grna_group_pairs <- data.frame(response_id = get_feature_ids(response_odm),
+                                        grna_group = "undercover")
 
 # verify that "method" is a function within the lowmoi package
 if (!exists(x = method_name, where = "package:lowmoi", mode = "function")) {
@@ -41,11 +41,11 @@ if (!exists(x = method_name, where = "package:lowmoi", mode = "function")) {
 }
 # verify that the formal arguments of "method" are correct
 formal_args <- names(formals(method_name))
-if (!all(c("response_odm", "gRNA_odm", "response_gRNA_group_pairs") %in% formal_args)) {
-  stop(paste0("The formal arguments of `", method_name, "` must include `response_odm`, `gRNA_odm`, and `response_gRNA_group_pairs`."))
+if (!all(c("response_odm", "grna_odm", "response_grna_group_pairs") %in% formal_args)) {
+  stop(paste0("The formal arguments of `", method_name, "` must include `response_odm`, `grna_odm`, and `response_grna_group_pairs`."))
 }
 
-to_pass_list <- list(response_odm = response_odm, gRNA_odm = gRNA_odm_swapped, response_gRNA_group_pairs = response_gRNA_group_pairs)
+to_pass_list <- list(response_odm = response_odm, grna_odm = grna_odm_swapped, response_grna_group_pairs = response_grna_group_pairs)
 if (!is.null(optional_args)) { # if there are optional arguments specified, add them to the list
   values_vect <- NULL
   names_vect <- NULL
@@ -60,14 +60,14 @@ if (!is.null(optional_args)) { # if there are optional arguments specified, add 
 
 result_df <- do.call(what = method_name, args = to_pass_list)
 
-if (!identical(sort(colnames(result_df)), c("gRNA_group", "p_value", "response_id"))) {
-  stop(paste0("The output of `", method_name, "` must be a data frame with columns `response_id`, `gRNA_group`, and `p_value`."))
+if (!identical(sort(colnames(result_df)), c("grna_group", "p_value", "response_id"))) {
+  stop(paste0("The output of `", method_name, "` must be a data frame with columns `response_id`, `grna_group`, and `p_value`."))
 }
 
-# add columns indicating the undercover gRNA, dataset name, and method name
+# add columns indicating the undercover grna, dataset name, and method name
 out <- result_df |>
-  dplyr::mutate(undercover_gRNA = undercover_ntc_name_in, gRNA_group = NULL, dataset = dataset_name, method = method_name) |>
-  dplyr::mutate_at(.vars = c("response_id", "undercover_gRNA", "dataset", "method"), .funs = factor)
+  dplyr::mutate(undercover_grna = undercover_ntc_name_in, grna_group = NULL, dataset = dataset_name, method = method_name) |>
+  dplyr::mutate_at(.vars = c("response_id", "undercover_grna", "dataset", "method"), .funs = factor)
 
 # save result
 saveRDS(object = out, file = "raw_result.rds")

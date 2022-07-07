@@ -24,16 +24,16 @@ jobs_df <- to_join_df$job_name %>%
    lapply(X = ., FUN = function(i) matrix(i, ncol = 3, nrow = 1)) %>%
    do.call(what = rbind, args = .) %>%
    as.data.frame() %>%
-   purrr::set_names(c("dataset", "method", "undercover_gRNA"))
+   purrr::set_names(c("dataset", "method", "undercover_grna"))
 to_join_df <- to_join_df %>% dplyr::mutate(jobs_df, job_name = NULL,
                                            clock_time = as.numeric(clock_time), max_ram = as.numeric(max_ram),
-                                           dataset = factor(dataset), method = factor(method), undercover_gRNA = factor(undercover_gRNA))
+                                           dataset = factor(dataset), method = factor(method), undercover_grna = factor(undercover_grna))
 
 # join with the result df
 result_df <- readRDS(result_df_fp)
 result_df$dataset <- factor(gsub(pattern = "/", replacement = "_", x = result_df$dataset, fixed = TRUE))
 
 new_result_df <- dplyr::left_join(x = result_df, y = to_join_df,
-                                  by = c("dataset", "method", "undercover_gRNA"))
+                                  by = c("dataset", "method", "undercover_grna"))
 # save
 saveRDS(object = new_result_df, file = result_file_name)

@@ -1,6 +1,6 @@
 params.max_retries = 1 // max number of retries upon process failure
 params.grna_modality = "assignment" // ("assignment" vs "expression")
-params.group_size = 3 // number of gRNAs per gRNA group
+params.group_size = 3 // number of grnas per grna group
 params.is_group_size_frac = "false" // is "group_size" a fraction? If so, group_size = group_size * (n NTCs); else group_size = group_size
 params.partition_count = 1 // number of NTC partitions (or "configurations") to iterate over
 params.is_partition_count_frac = "true" // is "partition_count" a fraction? If so, partition_count = group_size = group_size  * (n NTCs); else, partition_count = partition_count
@@ -58,7 +58,7 @@ dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 
 }
 
 
-// PROCESS 2: Run methods on undercover gRNAs
+// PROCESS 2: Run methods on undercover grnas
 process run_method {
   clusterOptions "-q $queue -l m_mem_free=${ram}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
   errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
@@ -81,7 +81,7 @@ process run_method {
 
 
 // PROCESS 3: Combine results
-params.result_file_name = "undercover_gRNA_check_results.rds"
+params.result_file_name = "undercover_grna_check_results.rds"
 process combine_results {
   clusterOptions "-q short.q -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
   publishDir params.result_dir, mode: "copy"

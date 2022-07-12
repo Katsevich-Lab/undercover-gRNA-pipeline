@@ -34,40 +34,19 @@ for (dataset_name in datasets) {
 
   # compute curr_group size and curr_partition_count
   group_size <- if (is_group_size_frac) floor(group_size_in * n_ntcs) else group_size_in
-  partition_count <- if (is_partition_count_frac) floor(partition_count_in * n_ntcs) else partition_count_in
-
-  # get the undercover groups
-  my_grps <- lowmoi::get_undercover_groups(ntc_names, group_size, partition_count)
-
-  # append to out
-  out <- c(out, paste(dataset_name, my_grps))
+  
+  if (group_size < n_ntcs) {
+    partition_count <- if (is_partition_count_frac) floor(partition_count_in * n_ntcs) else partition_count_in
+    
+    # get the undercover groups
+    my_grps <- lowmoi::get_undercover_groups(ntc_names, group_size, partition_count)
+    
+    # append to out
+    out <- c(out, paste(dataset_name, my_grps))
+  }
 }
 
 # write to disk
 file_con <- file("dataset_names_raw.txt")
 writeLines(out, file_con)
 close(file_con)
-
-get_undercover_groups <- function(ntc_names, group_size, partition_count) {
-  set.seed(4)
-  n_ntcs <- length(ntc_names)
-  total_possible_paritions <- choose(n_ntcs, group_size)
-  if (partition_count > total_possible_paritions) stop("partition_count exceeds the total number of possible partitions.")
-  my_undercover_groups <- character()
-  ntc_names_copy <- ntc_names
-  repeat {
-    while (length(ntc_names_copy) >= group_size) {
-      curr_grp <- sample(x = ntc_names_copy,
-                         size = group_size,
-                         replace = FALSE)
-      curr_grp_string <- curr_grp |> sort() |> paste0(collapse = ",")
-      if (!(curr_grp_string %in% my_undercover_groups)) {
-        my_undercover_groups <- c(my_undercover_groups, curr_grp_string)
-      }
-      ntc_names_copy <- ntc_names_copy[!(ntc_names_copy %in% curr_grp)]
-    }
-    if (length (my_undercover_groups) >= partition_count) break()
-    ntc_names_copy <- ntc_names
-  }
-  return(my_undercover_groups[seq(1, partition_count)])
-}

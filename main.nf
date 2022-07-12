@@ -5,6 +5,7 @@ params.is_group_size_frac = "false" // is "group_size" a fraction? If so, group_
 params.partition_count = 1 // number of NTC partitions (or "configurations") to iterate over
 params.is_partition_count_frac = "true" // is "partition_count" a fraction? If so, partition_count = group_size = group_size  * (n NTCs); else, partition_count = partition_count
 
+
 // STEP 0: Determine the dataset-method pairs; put the dataset method pairs into a map, and put the datasets into an array
 GroovyShell shell = new GroovyShell()
 evaluate(new File(params.data_method_pair_file))
@@ -43,6 +44,7 @@ process obtain_dataset_ntc_tuples {
   get_dataset_ntc_tuples.R ${params.grna_modality} ${params.group_size} ${params.is_group_size_frac} ${params.partition_count} ${params.is_partition_count_frac} $data_list_str
   """
 }
+
 dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
 
@@ -63,7 +65,6 @@ process run_method {
   clusterOptions "-q $queue -l m_mem_free=${ram}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
   errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
   maxRetries params.max_retries
-  debug true
 
   tag "$dataset+$method+$ntc"
 
@@ -77,7 +78,6 @@ process run_method {
   run_method.R $dataset $ntc $method ${params.grna_modality} $opt_args
   """
 }
-
 
 
 // PROCESS 3: Combine results

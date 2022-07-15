@@ -34,8 +34,8 @@ def get_vector_entry(vector, col_names, my_col_name) {
 
 // PROCESS 1: Obain tuples of datastes and NTC pairs
 process obtain_dataset_ntc_tuples {
-  debug true
-  clusterOptions "-q short.q -l m_mem_free=2G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
+  queue "short.q"
+  memory "2 GB"
 
   output:
   path "dataset_names_raw.txt" into dataset_names_raw_ch
@@ -62,11 +62,10 @@ dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 
 
 // PROCESS 2: Run methods on undercover grnas
 process run_method {
-  clusterOptions "-q $queue -l m_mem_free=${ram}G -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
-  errorStrategy { task.exitStatus == 137 ? 'retry' : 'terminate' }
-  maxRetries params.max_retries
+  queue "$queue"
+  memory "$ram GB"
 
-  tag "$dataset+$method+$ntc"
+  tag "$dataset+$method"
 
   output:
   file 'raw_result.rds' into raw_results_ch
@@ -83,7 +82,7 @@ process run_method {
 // PROCESS 3: Combine results
 params.result_file_name = "undercover_grna_check_results.rds"
 process combine_results {
-  clusterOptions "-q short.q -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
+  queue "short.q"
   publishDir params.result_dir, mode: "copy"
 
   output:
@@ -103,7 +102,7 @@ process combine_results {
 start_time = params.time.toString()
 if (start_time.length() == 7) start_time = "0" + start_time
 process get_ram_cpu_info {
-  clusterOptions "-q short.q -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
+  queue "short.q"
 
   when:
   params.machine_name == "hpcc"
@@ -122,7 +121,7 @@ process get_ram_cpu_info {
 
 process append_ram_clock_info {
   publishDir params.result_dir, mode: "copy"
-  clusterOptions "-q short.q -o \$HOME/output/\'\$JOB_NAME-\$JOB_ID-\$TASK_ID.log\'"
+  queue "short.q"
 
   when:
   params.machine_name == "hpcc"

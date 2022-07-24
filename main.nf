@@ -64,6 +64,7 @@ dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 
 process run_method {
   queue "$queue"
   memory "$ram GB"
+  errorStrategy 'retry'
 
   tag "$dataset+$method"
 

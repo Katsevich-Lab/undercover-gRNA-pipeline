@@ -98,6 +98,7 @@ process combine_results {
   """
 }
 
+
 /*
 // PROCESS 4: Add RAM and CPU information to results
 start_time = params.time.toString()

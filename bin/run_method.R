@@ -7,11 +7,7 @@ undercover_ntc_name_in <- args[2]
 method_name <- args[3]
 grna_modality <- args[4]
 genes_to_subsample <- as.integer(args[5])
-if (length(args) >= 6) {
-  optional_args <- args[seq(6, length(args))]
-} else {
-  optional_args <- NULL
-}
+optional_args <- if (length(args) == 6) args[6] else NULL
 
 # Load packages
 library(ondisc)
@@ -52,6 +48,7 @@ if (!all(c("response_odm", "grna_odm", "response_grna_group_pairs") %in% formal_
 
 to_pass_list <- list(response_odm = response_odm, grna_odm = grna_odm_swapped, response_grna_group_pairs = response_grna_group_pairs)
 if (!is.null(optional_args)) { # if there are optional arguments specified, add them to the list
+  optional_args <- strsplit(x = optional_args, split = ":") |> unlist()
   values_vect <- NULL
   names_vect <- NULL
   for (str in optional_args) {

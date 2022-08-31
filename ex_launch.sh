@@ -13,4 +13,5 @@ nextflow run "main.nf" \
  --is_partition_count_frac "false" \
  --machine_name $MACHINE_NAME \
  --time $curr_time \
- -profile standard
+ --genes_to_subsample "5" \
+ -profile standard # -resume

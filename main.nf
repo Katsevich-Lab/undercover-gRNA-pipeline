@@ -4,6 +4,7 @@ params.group_size = 3 // number of grnas per grna group
 params.is_group_size_frac = "false" // is "group_size" a fraction? If so, group_size = group_size * (n NTCs); else group_size = group_size
 params.partition_count = 1 // number of NTC partitions (or "configurations") to iterate over
 params.is_partition_count_frac = "true" // is "partition_count" a fraction? If so, partition_count = group_size = group_size  * (n NTCs); else, partition_count = partition_count
+params.genes_to_subsample = 0 // number of genes to sample; 0 corresponds to no downsampling, i.e., use all genes
 
 
 // STEP 0: Determine the dataset-method pairs; put the dataset method pairs into a map, and put the datasets into an array
@@ -74,7 +75,7 @@ process run_method {
   tuple val(dataset), val(ntc), val(method), val(queue), val(ram), val(opt_args) from dataset_ntc_method_tuples
 
   """
-  run_method.R $dataset $ntc $method ${params.grna_modality} $opt_args
+  run_method.R $dataset $ntc $method ${params.grna_modality} ${params.genes_to_subsample} $opt_args
   """
 }
 
@@ -97,7 +98,7 @@ process combine_results {
   """
 }
 
-
+/*
 // PROCESS 4: Add RAM and CPU information to results
 start_time = params.time.toString()
 if (start_time.length() == 7) start_time = "0" + start_time
@@ -137,3 +138,4 @@ process append_ram_clock_info {
   append_ram_cpu.R ram_cpu_info collected_results $params.result_file_name
   """
 }
+*/

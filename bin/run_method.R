@@ -6,8 +6,9 @@ dataset_name <- args[1]
 undercover_ntc_name_in <- args[2]
 method_name <- args[3]
 grna_modality <- args[4]
-if (length(args) >= 5) {
-  optional_args <- args[seq(5, length(args))]
+genes_to_subsample <- as.integer(args[5])
+if (length(args) >= 6) {
+  optional_args <- args[seq(6, length(args))]
 } else {
   optional_args <- NULL
 }
@@ -30,9 +31,13 @@ if (!("non-targeting" %in% grna_feature_covariates$target)) {
 }
 grna_odm_swapped <- grna_odm |> mutate_feature_covariates(target = grna_feature_covariates$target)
 
-
 # obtain the (response, grna) pairs to analyze
-response_grna_group_pairs <- data.frame(response_id = get_feature_ids(response_odm),
+response_ids <- get_feature_ids(response_odm)
+if (genes_to_subsample > 0 && length(response_ids) >= genes_to_subsample) {
+  set.seed(4)
+  response_ids <- sample(response_ids, genes_to_subsample)
+}
+response_grna_group_pairs <- data.frame(response_id = response_ids,
                                         grna_group = "undercover")
 
 # verify that "method" is a function within the lowmoi package
@@ -60,8 +65,8 @@ if (!is.null(optional_args)) { # if there are optional arguments specified, add 
 
 result_df <- do.call(what = method_name, args = to_pass_list)
 
-if (!identical(sort(colnames(result_df)), c("grna_group", "p_value", "response_id"))) {
-  stop(paste0("The output of `", method_name, "` must be a data frame with columns `response_id`, `grna_group`, and `p_value`."))
+if (!all(c("grna_group", "p_value", "response_id") %in% colnames(result_df))) {
+  stop(paste0("The output of `", method_name, "` must contain columns `response_id`, `grna_group`, and `p_value`."))
 }
 
 # add columns indicating the undercover grna, dataset name, and method name

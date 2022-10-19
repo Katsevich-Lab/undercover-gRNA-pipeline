@@ -85,6 +85,7 @@ params.result_file_name = "undercover_grna_check_results.rds"
 process combine_results {
   queue "short.q"
   publishDir params.result_dir, mode: "copy"
+  memory "25 GB"
 
   output:
   file "$params.result_file_name" into collected_results_ch

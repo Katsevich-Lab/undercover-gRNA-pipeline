@@ -5,7 +5,7 @@ params.is_group_size_frac = "false" // is "group_size" a fraction? If so, group_
 params.partition_count = 1 // number of NTC partitions (or "configurations") to iterate over
 params.is_partition_count_frac = "true" // is "partition_count" a fraction? If so, partition_count = group_size = group_size  * (n NTCs); else, partition_count = partition_count
 params.genes_to_subsample = 0 // number of genes to sample; 0 corresponds to no downsampling, i.e., use all genes
-
+params.pair_restriction = "/"
 
 // STEP 0: Determine the dataset-method pairs; put the dataset method pairs into a map, and put the datasets into an array
 GroovyShell shell = new GroovyShell()
@@ -65,6 +65,7 @@ dataset_ntc_method_tuples = dataset_ntc_pairs.combine(data_method_pairs_ch, by: 
 process run_method {
   queue "$queue"
   memory "$ram GB"
+  debug true
 
   tag "$dataset+$method"
 
@@ -73,9 +74,10 @@ process run_method {
 
   input:
   tuple val(dataset), val(ntc), val(method), val(queue), val(ram), val(opt_args) from dataset_ntc_method_tuples
+  path pair_restriction_fp from params.pair_restriction
 
   """
-  run_method.R $dataset $ntc $method ${params.grna_modality} ${params.genes_to_subsample} $opt_args
+  run_method.R $dataset $ntc $method ${params.grna_modality} ${params.genes_to_subsample} $pair_restriction_fp $opt_args
   """
 }
 
@@ -98,46 +100,3 @@ process combine_results {
   collect_results.R $params.result_file_name raw_result*
   """
 }
-
-
-/*
-// PROCESS 4: Add RAM and CPU information to results
-start_time = params.time.toString()
-if (start_time.length() == 7) start_time = "0" + start_time
-process get_ram_cpu_info {
-  queue "short.q"
-
-  when:
-  params.machine_name == "hpcc"
-
-  input:
-  val flag from flag_ch
-
-  output:
-  file "ram_cpu_info" into ram_cpu_ch
-
-  """
-  qacct -j -o timbar -b $start_time | awk '/jobname|ru_maxrss|ru_wallclock/ {print \$1","\$2}' > ram_cpu_info
-  """
-}
-
-
-process append_ram_clock_info {
-  publishDir params.result_dir, mode: "copy"
-  queue "short.q"
-
-  when:
-  params.machine_name == "hpcc"
-
-  output:
-  file "$params.result_file_name" into collected_results_ch_appended
-
-  input:
-  file "collected_results" from collected_results_ch
-  file "ram_cpu_info" from ram_cpu_ch
-
-  """
-  append_ram_cpu.R ram_cpu_info collected_results $params.result_file_name
-  """
-}
-*/

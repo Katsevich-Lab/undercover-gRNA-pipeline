@@ -16,7 +16,8 @@ out <- NULL
 for (dataset_name in datasets) {
   # load grna odm and feature covariates
   grna_dataset_name <- lowmoi::get_grna_dataset_name(dataset_name, grna_modality)
-  grna_feature_covariates <- lowmoi::load_dataset_modality(grna_dataset_name) |> get_feature_covariates()
+  grna_odm <- lowmoi::load_dataset_modality(grna_dataset_name)
+  grna_feature_covariates <- grna_odm |> get_feature_covariates()
 
   # some basic correctness checks: check for the presence of column "target" and ensure that "non-targeting" is an entry of this column.
   if (!("target" %in% colnames(grna_feature_covariates))) {
@@ -28,7 +29,8 @@ for (dataset_name in datasets) {
 
   # get NTC names and NTC count
   ntc_names <- grna_feature_covariates |>
-    dplyr::filter(target_type == "non-targeting") |>
+    dplyr::filter(target_type == "non-targeting",
+                  n_nonzero >= 10) |> # NTC should be expressed in at least 10 cells
     row.names()
   n_ntcs <- length(ntc_names)
 

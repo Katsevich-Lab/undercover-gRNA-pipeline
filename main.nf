@@ -46,6 +46,7 @@ process obtain_dataset_ntc_tuples {
   """
 }
 
+/*
 dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
 
@@ -100,3 +101,4 @@ process combine_results {
   collect_results.R $params.result_file_name raw_result*
   """
 }
+*/

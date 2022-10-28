@@ -46,9 +46,8 @@ process obtain_dataset_ntc_tuples {
   """
 }
 
-/*
-dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
+dataset_ntc_pairs = dataset_names_raw_ch.splitText().map{it.trim().split(" ")}.map{[it[0], it[1]]}
 
 // STEP 2: Combine the methods and NTCs, resulting in dataset-NTC-method tuples.
 // Additionally, append to each tuple: (i) the amount of RAM requested, (ii) the queue (short or long), and (iii) any additional arguments.
@@ -101,4 +100,3 @@ process combine_results {
   collect_results.R $params.result_file_name raw_result*
   """
 }
-*/

@@ -58,7 +58,9 @@ if (length(response_ids) == 0) {
     stop(paste0("The formal arguments of `", method_name, "` must include `response_odm`, `grna_odm`, and `response_grna_group_pairs`."))
   }
   
-  to_pass_list <- list(response_odm = response_odm, grna_odm = grna_odm_swapped, response_grna_group_pairs = response_grna_group_pairs)
+  to_pass_list <- list(response_odm = response_odm,
+                       grna_odm = grna_odm_swapped,
+                       response_grna_group_pairs = response_grna_group_pairs)
   if (!is.null(optional_args)) { # if there are optional arguments specified, add them to the list
     optional_args <- strsplit(x = optional_args, split = ":") |> unlist()
     values_vect <- NULL
